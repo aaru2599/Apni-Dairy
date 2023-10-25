@@ -1,7 +1,6 @@
 import React from 'react'
 import AdminHeaderInput from '../atoms/AdminHeaderInput'
 import AddItems from '../atoms/AddItems'
-import AddedProducts from '../../AddedProducts/AddedProducts'
 
 const AdminHeader = () => {
   const adminHeaderStyle={
@@ -26,6 +25,7 @@ const AdminHeader = () => {
       <AddItems/>
 
      </header>
+
     
     </div>
   )
