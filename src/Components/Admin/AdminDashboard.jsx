@@ -1,13 +1,16 @@
 import React from 'react'
 import Header from '../../features/Header/Header'
-import AdminHeader from './molecule/AdminHeader'
+import AdminHeader from './AdminHeader/molecule/AdminHeader'
+import AddedProducts from './AddedProducts/AddedProducts'
 
 
 const AdminDashboard = () => {
   return (
    <div>
     <Header/>
-    <AdminHeader/>
+    <AdminHeader  />
+    <AddedProducts />
+
     
 
    </div>

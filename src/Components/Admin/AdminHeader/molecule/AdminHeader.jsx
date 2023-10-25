@@ -1,28 +1,32 @@
 import React from 'react'
 import AdminHeaderInput from '../atoms/AdminHeaderInput'
 import AddItems from '../atoms/AddItems'
+import AddedProducts from '../../AddedProducts/AddedProducts'
 
 const AdminHeader = () => {
   const adminHeaderStyle={
    
     display:"flex",
-    justifyContent:"space-between"
+    justifyContent:"space-between",
+    alignItem:"center"
   }
   const adminHeaderMainStyle={
     width:"50%",
     marginLeft:"auto",
     marginRight:"auto",
     marginTop:"10px",
-    backgroundColor:"green",
+    backgroundColor:"khaki",
     padding:"20px"
   } 
   return (
     <div style={adminHeaderMainStyle} >
      <header style={adminHeaderStyle}>
-     <div>My Products</div>
+     <h3>My Products</h3>
       <AdminHeaderInput />
       <AddItems/>
+
      </header>
+    
     </div>
   )
 }

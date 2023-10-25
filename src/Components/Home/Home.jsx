@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../../Header/Header';
+import Header from '../../features/Header/Header';
 
 export const Home = () => {
     console.log("Home");
@@ -7,7 +7,7 @@ export const Home = () => {
   return (
     <div>
       <Header/>
-      <h2>Home</h2>
+      <h2>Home  </h2>
     </div>
   )
 }

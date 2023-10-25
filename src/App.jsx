@@ -3,14 +3,16 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import { Home } from './features/molecule/Home/Home'
-import AboutUs from './features/molecule/AboutUs/AboutUs'
-import Products from './features/molecule/Products/Products'
-import Shop from './features/molecule/Shop/Shop'
+import { Home } from './Components/Home/Home'
+import AboutUs from './Components/AboutUs/AboutUs'
+import Products from './Components/Products/Products'
+import Shop from './Components/Shop/Shop'
 import Header from './features/Header/Header'
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.js"
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
 import AdminDashboard from './Components/Admin/AdminDashboard'
+
+import AddProductPage from './Components/AddProductForm/AddProductPage'
 
 function App() {
 
@@ -39,6 +41,10 @@ const myRouter=createBrowserRouter([
   {
     path:"/admin",
     element:<AdminDashboard/>
+  },
+  {
+    path:"/addproduct",
+    element:<AddProductPage/>
   }
 
 ])

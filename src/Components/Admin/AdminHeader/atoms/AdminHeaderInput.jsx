@@ -2,7 +2,7 @@ import React from 'react'
 
 const AdminHeaderInput = () => {
   return (
-    <input type="text" placeholder='search'/>
+    <input  type="text" placeholder='search'/>
   )
 }
 
