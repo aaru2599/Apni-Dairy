@@ -7,8 +7,8 @@ const Products = () => {
   return (
 
     <div> <Header />
-      <h2>Products</h2>
-      <AddedProducts /></div>
+      <h2 className='text-center'>Products</h2>
+    </div>
 
   )
 }

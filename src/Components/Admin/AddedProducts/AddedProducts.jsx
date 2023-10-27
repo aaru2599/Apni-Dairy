@@ -1,9 +1,10 @@
+
+
 import React from 'react'
-import { useContext } from 'react';
-import { ProductContext } from '../../AddProductForm/contextAPI/productContext';
 
 const AddedProducts = () => {
-  const products = useContext(ProductContext)
+  // const products = useContext(ProductContext)
+  const products=JSON.parse(localStorage.getItem('productData'))
 
   console.log("Added Product", products);
   return (
