@@ -5,13 +5,13 @@ import { LinkTag, headerDiv } from './Header.Style';
 
 const headerStyle = {
   display: "flex",
-  justifyContent: "space-around",
+  justifyContent: "space-between",
   alignItems: "center"
 }
 const Header = () => {
 
   return (
-    <header className=' mt-3 bg-success p-3'>
+    <header className=' mt-2 bg-success p-3'>
       <div style={headerStyle}>
         <Logo/>
         <div >

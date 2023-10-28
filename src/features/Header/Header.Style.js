@@ -10,6 +10,6 @@ export const LinkTag=styled(Link)`
 color:khaki;
 text-decoration:none;
 margin-right:40px;
-font-size:2rem
+font-size:1.5rem
 
 `;

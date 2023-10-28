@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import '../../styles.css'
 
-const AddProductPage = ({props}) => {
+const UpdateProductForm = ({props}) => {
     const [productName, setProductName] = useState("")
     const [productPrice, setProductPrice] = useState("")
     const [productDetails, setProductDetails] = useState("")
@@ -196,4 +196,4 @@ const AddProductPage = ({props}) => {
     )
 }
 
-export default AddProductPage
+export default UpdateProductForm
