@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-const AddedProducts = () => {
+const AddedProducts = ( ) => {
   // const products = useContext(ProductContext)
   const products=JSON.parse(localStorage.getItem('productData'))
 
