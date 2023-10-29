@@ -1,0 +1,44 @@
+{
+    "productData": [
+        {
+            "pId":0,
+            "pName": "milk",
+            "pPrice": "100",
+            "pDetails": "hadav",
+            "pSellingPrice": "50",
+            "pQuantity": "10  ",
+            "pSelflife": "gfghff",
+            "pAvailable": true
+        },
+        {
+            "pId":1,
+            "pName": "ghee",
+            "pPrice": "120",
+            "pDetails": "hjghjvvv",
+            "pSellingPrice": "100",
+            "pQuantity": "2",
+            "pSelflife": "jhjvv",
+            "pAvailable": false
+        },
+        {
+            "pId":2,
+            "pName": "curd",
+            "pPrice": "90",
+            "pDetails": "sdghfjdfjj",
+            "pSellingPrice": "80",
+            "pQuantity": "2",
+            "pSelflife": "jhvhvvgh",
+            "pAvailable": true
+        },
+        {
+            "pId":3,
+            "pName": "dahi",
+            "pPrice": "150",
+            "pDetails": "hjghjgfwefh",
+            "pSellingPrice": "200",
+            "pQuantity": "2",
+            "pSelflife": "jhghhj",
+            "pAvailable": false
+        }
+    ]
+}

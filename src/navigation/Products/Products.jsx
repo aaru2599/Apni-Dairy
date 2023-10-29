@@ -1,6 +1,5 @@
 import React from 'react'
 import Header from '../../features/Header/Header';
-import AddedProducts from '../Admin/AddedProducts/AddedProducts';
 
 const Products = () => {
   console.log("product");

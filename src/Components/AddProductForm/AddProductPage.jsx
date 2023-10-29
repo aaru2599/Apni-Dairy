@@ -1,7 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import '../../styles.css'
+import { ToastContainer } from 'react-toastify'
+import { toast } from 'react-toastify';
 
-const AddProductPage = ({props}) => {
+import 'react-toastify/dist/ReactToastify.css';
+
+const AddProductPage = ({ props }) => {
     const [productName, setProductName] = useState("")
     const [productPrice, setProductPrice] = useState("")
     const [productDetails, setProductDetails] = useState("")
@@ -12,12 +16,8 @@ const AddProductPage = ({props}) => {
     // const [productImage, setProductImage] = useState(null)
     const [submittedData, setSubmittedData] = useState([])
 
-
-
     const handleSubmit = (e) => {
         e.preventDefault();
-
-
         const productData = {
             pName: productName,
             pPrice: productPrice,
@@ -27,11 +27,9 @@ const AddProductPage = ({props}) => {
             pSelflife: productSelflife,
             pAvailable: productAvailable,
             // pImage: productImage,
-
         }
-
         setSubmittedData([...submittedData, productData])
-        console.log("Product Added");
+       
         setProductName("")
         setProductPrice("")
         setProductDetails("")
@@ -41,6 +39,13 @@ const AddProductPage = ({props}) => {
         setProductAvailable(false)
         // setProductImage(null)
         localStorage.setItem('productData', JSON.stringify([...submittedData, productData]))
+        if(submittedData){
+            toast.success("Data Added To Dashboard")
+            setInterval(() => {
+                window.location='./admin'
+            }, 3000);
+        }
+        
 
     }
     useEffect(() => {
@@ -157,7 +162,9 @@ const AddProductPage = ({props}) => {
                     </div> */}
                     <button className='btn btn-primary w-100' type="submit">Submit</button>
                 </form>
+                <ToastContainer/>
             </div>
+
             <div className='d-flex flex-wrap justify-content-around mt-3 '>
                 {
                     submittedData && submittedData.length > 0 ? (

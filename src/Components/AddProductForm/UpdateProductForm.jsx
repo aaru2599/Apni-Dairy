@@ -1,146 +1,139 @@
-import React, { useContext, useEffect, useState } from 'react'
-import '../../styles.css'
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
-const UpdateProductForm = ({props}) => {
-    const [productName, setProductName] = useState("")
-    const [productPrice, setProductPrice] = useState("")
-    const [productDetails, setProductDetails] = useState("")
-    const [productAvailable, setProductAvailable] = useState(false)
-    const [sellingPrice, setSellingPrice] = useState("")
-    const [productQuantity, setProductQuantity] = useState("")
-    const [productSelflife, setProductSelflife] = useState("")
-    // const [productImage, setProductImage] = useState(null)
-    const [submittedData, setSubmittedData] = useState([])
+const UpdateProductForm = () => {
+    const navigate = useNavigate()
+    const { index } = useParams()
+    const [values, setValues] = useState({
+        pName: "",
+        pPrice: "",
+        pDetails: "",
+        pSellingPrice: "",
+        pQuantity: "",
+        pSelflife: "",
+        pAvailable: "",
+    })
+    const productDataSubmit = (e) => {
+        e.preventDefault()
+        const storedData = localStorage.getItem(`productData`);
+        const dataValues = JSON.parse(storedData) || [];
 
+        dataValues[Number(index)] = values;
 
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-
-        const productData = {
-            pName: productName,
-            pPrice: productPrice,
-            pDetails: productDetails,
-            pSellingPrice: sellingPrice,
-            pQuantity: productQuantity,
-            pSelflife: productSelflife,
-            pAvailable: productAvailable,
-            // pImage: productImage,
-
+        localStorage.setItem(`productData`, JSON.stringify(dataValues));
+        navigate('/admin')
+        if(submittedData){
+            toast.success("Data Added To Dashboard")
+            setInterval(() => {
+                window.location='./admin'
+            }, 3000);
         }
-
-        setSubmittedData([...submittedData, productData])
-        console.log("Product Added");
-        setProductName("")
-        setProductPrice("")
-        setProductDetails("")
-        setProductSelflife("")
-        setSellingPrice("")
-        setProductQuantity("")
-        setProductAvailable(false)
-        // setProductImage(null)
-        localStorage.setItem('productData', JSON.stringify([...submittedData, productData]))
-
+        
     }
     useEffect(() => {
-        const savedData = JSON.parse(localStorage.getItem('productData'))
-        if (savedData) {
-            setSubmittedData(savedData)
-            console.log("savedData", savedData);
-
+        const storedData = localStorage.getItem(`productData`);
+        const dataValues = JSON.parse(storedData) || [];
+        const productToUpdate = dataValues[Number(index)];
+        setValues({
+            ...values,
+            pName: productToUpdate.pName,
+            pPrice: productToUpdate.pPrice,
+            pDetails: productToUpdate.pDetails,
+            pSellingPrice: productToUpdate.pSellingPrice,
+            pQuantity: productToUpdate.pQuantity,
+            pSelflife: productToUpdate.pSelflife,
+            pAvailable: productToUpdate.pAvailable,
         }
-    }, [])
-    console.log("submittedData", submittedData);
-    const onSetImage = (event) => {
-        const file = URL.createObjectURL(event.target.files[0]);
-        setProductImage(file)
-    }
+        )
+    }, [index])
     return (
+        <div className='w-25 mx-auto'>
+            <h1>Product Form</h1>
+            <form onSubmit={productDataSubmit}>
+                <div>
+                    <label >Product Name:</label>
+                    <input
+                        className='form-control'
+                        type="text"
+                        id="productName"
+                        value={values.pName}
+                        onChange={e => setValues({ ...values, pName: e.target.value })}
+                    />
+                </div>
+                <div>
+                    <label >Product Price:</label>
+                    <input
+                        required
+                        className='form-control'
 
-        <div >
-            <div className='w-25 mx-auto'>
-                <h1>Product Form</h1>
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label >Product Name:</label>
-                        <input
-                            className='form-control'
-                            type="text"
-                            id="productName"
-                            value={productName}
-                            onChange={(e) => setProductName(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label >Product Price:</label>
-                        <input
-                            required
-                            className='form-control'
+                        type="text"
+                        id="productPrice"
+                        value={values.pPrice}
+                        onChange={e => setValues({ ...values, pPrice: e.target.value })}
+                    />
+                </div>
+                <div>
+                    <label >Selling Price:</label>
+                    <input
 
-                            type="text"
-                            id="productPrice"
-                            value={productPrice}
-                            onChange={(e) => setProductPrice(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label >Selling Price:</label>
-                        <input
+                        required
+                        className='form-control'
 
-                            required
-                            className='form-control'
+                        type="text"
+                        id="sellingPrice"
+                        value={values.pSellingPrice}
+                        onChange={e => setValues({ ...values, pSellingPrice: e.target.value })}
 
-                            type="text"
-                            id="sellingPrice"
-                            value={sellingPrice}
-                            onChange={(e) => setSellingPrice(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label > Product Quantity:</label>
-                        <input
-                            required
-                            className='form-control'
-                            type="text"
-                            id="productQuantity"
-                            value={productQuantity}
-                            onChange={(e) => setProductQuantity(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label >Product Availability:</label>
-                        <input
+                    />
+                </div>
+                <div>
+                    <label > Product Quantity:</label>
+                    <input
+                        required
+                        className='form-control'
+                        type="text"
+                        id="productQuantity"
+                        value={values.pQuantity}
+                        onChange={e => setValues({ ...values, pQuantity: e.target.value })}
 
-                            className='form-check-input'
-                            type="checkbox"
-                            id="productAvailable"
-                            checked={productAvailable}
-                            onChange={(e) => setProductAvailable(e.target.checked)}
-                        />
-                    </div>
-                    <div>
-                        <label >Product Details:</label>
-                        <textarea
-                            required
-                            className='form-control'
+                    />
+                </div>
+                <div>
+                    <label >Product Availability:</label>
+                    <input
 
-                            id="productDetails"
-                            value={productDetails}
-                            onChange={(e) => setProductDetails(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label >Product SelfLife:</label>
-                        <input
-                            className='form-control'
-                            type="text"
-                            id="productSelflife"
-                            value={productSelflife}
-                            onChange={(e) => setProductSelflife(e.target.value)}
-                        />
-                    </div>
-                    {/* <div>
+                        className='form-check-input'
+                        type="checkbox"
+                        id="productAvailable"
+                        checked={values.pAvailable}
+                        onChange={e => setValues({ ...values, pAvailable: e.target.value })}
+
+                    />
+                </div>
+                <div>
+                    <label >Product Details:</label>
+                    <textarea
+                        required
+                        className='form-control'
+
+                        id="productDetails"
+                        value={values.pDetails}
+                        onChange={e => setValues({ ...values, pDetails: e.target.value })}
+
+                    />
+                </div>
+                <div>
+                    <label >Product SelfLife:</label>
+                    <input
+                        className='form-control'
+                        type="text"
+                        id="productSelflife"
+                        value={values.pSelflife}
+                        onChange={e => setValues({ ...values, pSelflife: e.target.value })}
+                    />
+                </div>
+                {/* <div>
                         <label
                             className='custom-file-label'
 
@@ -155,44 +148,10 @@ const UpdateProductForm = ({props}) => {
                             onChange={onSetImage}
                         />
                     </div> */}
-                    <button className='btn btn-primary w-100' type="submit">Submit</button>
-                </form>
-            </div>
-            <div className='d-flex flex-wrap justify-content-around mt-3 '>
-                {
-                    submittedData && submittedData.length > 0 ? (
-                        submittedData.map((product, index) => {
-                            return (
-                                <div class="card" key={index} style={{ width: "400px" }} >
-                                    {/* <img src={product.pImage} class="card-img-top" alt="Image" /> */}
-                                    <div class="card-body">
-                                        <h5 class="card-title">{product.pName}</h5>
-                                        <div className='d-flex justify-content-between'>
-                                            <h6 class="card-title">Product Price:${product.pPrice}</h6>
-                                            <h6 class="card-title">Selling Price:${product.pSellingPrice}</h6>
-
-                                        </div>
-                                        <p class="card-text">{product.pDetails}</p>
-                                        <p class="card-text">{product.pQuantity}</p>
-
-                                        <p class="card-text">
-                                            <small class="text-body-secondary">{product.pAvailable ? "Available" : "Not Available"}</small></p>
-                                        <button className='btn btn-primary'>Add To Cart</button>
-                                    </div>
-                                </div>
-
-                            )
-                        })
-                    ) : <h2>No products available</h2>
-                }
-
-
-
-            </div>
-
+                <button className='btn btn-primary w-100' type="submit">Submit</button>
+            </form>
+            <ToastContainer/>
         </div>
-
-
     )
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../../features/Header/Header';
 
-export const Home = () => {
+ const Home = () => {
     console.log("Home");
 
   return (
@@ -11,3 +11,4 @@ export const Home = () => {
     </div>
   )
 }
+export default Home
