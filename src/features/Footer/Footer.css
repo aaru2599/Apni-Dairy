@@ -1,0 +1,24 @@
+
+
+/* Style the content with a ">" symbol */
+.serviceStyle li::before {
+    content: ">";
+    text-decoration-line: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    padding-right: 10px;
+}
+
+/* Apply a hover effect to the content  */
+.serviceStyle li:hover::before {
+    color: aqua;
+}
+     
+.serviceStyle p {
+    font-size: 1.2rem;
+}
+
+.serviceStyle li a {
+    text-decoration: none;
+    color: white;
+}

@@ -10,16 +10,14 @@ import Shop from '../Shop/Shop'
 import AdminDashboard from '../../Components/Admin/AdminDashboard'
 import AddProductPage from '../../Components/AddProductForm/AddProductPage'
 import UpdateProductForm from '../../Components/AddProductForm/UpdateProductForm'
+import ProductsDetails from '../Products/ProductsDetails'
 
 function RouteLayout() {
 
   const myRouter = createBrowserRouter([
+
     {
       path: "/",
-      element: <Header />
-    },
-    {
-      path: "/home",
       element: <Home />
     },
     {
@@ -44,9 +42,13 @@ function RouteLayout() {
       element: <AddProductPage />
     }
     ,
-     {
-path:"/updateproduct/:index",
-element:<UpdateProductForm/>
+    {
+      path: "/updateproduct/:index",
+      element: <UpdateProductForm />
+    },
+    {
+      path:"/product-details",
+      element:<ProductsDetails/>
     }
   ])
   return (

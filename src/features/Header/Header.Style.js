@@ -7,7 +7,7 @@ display: flex;
     align-items: center;
 `;
 export const LinkTag=styled(Link)`
-color:khaki;
+color:black;
 text-decoration:none;
 margin-right:40px;
 font-size:1.5rem

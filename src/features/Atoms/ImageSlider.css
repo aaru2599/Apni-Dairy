@@ -1,0 +1,17 @@
+/* ImageSlider.css */
+
+.slider-container {
+  width: 100%;
+  margin: auto;
+  /* padding: 20px; */
+}
+.carousel-status {
+  display: none;
+}
+.rounded-pill:hover{
+  /* background-color:#ffffff; */
+  /* border: none; */
+  /* border-color:#ffffff ; */
+  /* color: black; */
+}
+/* You can add more styles based on your design preferences */

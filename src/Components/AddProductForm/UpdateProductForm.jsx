@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import { KEY_PRODUCT_DATA } from '../../utils/localStorage';
 
 const UpdateProductForm = () => {
     const navigate = useNavigate()
-    const { index } = useParams()
+    const { index} = useParams()
     const [values, setValues] = useState({
+        
         pName: "",
         pPrice: "",
         pDetails: "",
@@ -13,39 +15,59 @@ const UpdateProductForm = () => {
         pQuantity: "",
         pSelflife: "",
         pAvailable: "",
+        pImage: null,
     })
+    const onSetImage = (event) => {
+        const file = URL.createObjectURL(event.target.files[0]);
+        setValues({...values,pImage:file})
+        // setProductImage(file)
+    }
     const productDataSubmit = (e) => {
         e.preventDefault()
-        const storedData = localStorage.getItem(`productData`);
-        const dataValues = JSON.parse(storedData) || [];
+        const dataValues = JSON.parse(localStorage.getItem(KEY_PRODUCT_DATA)) || [];
 
         dataValues[Number(index)] = values;
 
-        localStorage.setItem(`productData`, JSON.stringify(dataValues));
-        navigate('/admin')
-        if(submittedData){
-            toast.success("Data Added To Dashboard")
-            setInterval(() => {
-                window.location='./admin'
-            }, 3000);
-        }
-        
+        localStorage.setItem(KEY_PRODUCT_DATA, JSON.stringify(dataValues));
+        console.log("values", values);
+
+
+        toast.success("Product updated successfully", {
+            autoClose: 2000,
+        });
+
+        setTimeout(() => {
+            navigate("/admin");
+        }, 3000);
+
+
+
     }
     useEffect(() => {
-        const storedData = localStorage.getItem(`productData`);
-        const dataValues = JSON.parse(storedData) || [];
-        const productToUpdate = dataValues[Number(index)];
+        const dataValues = JSON.parse(localStorage.getItem(KEY_PRODUCT_DATA)) || [];
+       
+        console.log("dataValues",dataValues);
+       
+        const productToUpdate=dataValues[Number(index)]
+
+        console.log("productToUpdate", productToUpdate);
+        // setValues([...dataValues,productToUpdate])
+        localStorage.setItem(KEY_PRODUCT_DATA, JSON.stringify(dataValues))
+
         setValues({
             ...values,
+            pId:productToUpdate.pId,
             pName: productToUpdate.pName,
-            pPrice: productToUpdate.pPrice,
-            pDetails: productToUpdate.pDetails,
+            pPrice: productToUpdate.pPrice ,
+            pDetails: productToUpdate.pDetails ,
             pSellingPrice: productToUpdate.pSellingPrice,
-            pQuantity: productToUpdate.pQuantity,
-            pSelflife: productToUpdate.pSelflife,
+            pQuantity: productToUpdate.pQuantity ,
+            pSelflife: productToUpdate.pSelflife ,
             pAvailable: productToUpdate.pAvailable,
+            pImage:productToUpdate.pImage,
         }
         )
+
     }, [index])
     return (
         <div className='w-25 mx-auto'>
@@ -107,9 +129,9 @@ const UpdateProductForm = () => {
                         type="checkbox"
                         id="productAvailable"
                         checked={values.pAvailable}
-                        onChange={e => setValues({ ...values, pAvailable: e.target.value })}
+                        onChange={e => setValues({ ...values, pAvailable: e.target.checked })}
 
-                    />
+                    />  
                 </div>
                 <div>
                     <label >Product Details:</label>
@@ -133,7 +155,7 @@ const UpdateProductForm = () => {
                         onChange={e => setValues({ ...values, pSelflife: e.target.value })}
                     />
                 </div>
-                {/* <div>
+                <div>
                         <label
                             className='custom-file-label'
 
@@ -142,15 +164,16 @@ const UpdateProductForm = () => {
                             required
                             className='custom-file-input'
                             type="file"
+                          
                             accept="image/*"
-                            id="productImage"
-
+                            id="file"
+                            
                             onChange={onSetImage}
                         />
-                    </div> */}
-                <button className='btn btn-primary w-100' type="submit">Submit</button>
+                    </div>
+                <button className='btn btn-primary w-100' type="submit">Update</button>
             </form>
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     )
 }

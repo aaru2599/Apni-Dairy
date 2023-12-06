@@ -1,9 +1,13 @@
 import React from 'react'
+import Header from '../../features/Header/Header';
 
 const AboutUs = () => {
-    console.log("AboutUs");
+  console.log("AboutUs");
   return (
-    <div>AboutUs</div>
+    <div>
+      <Header />
+      <h2 className='text-center'>AboutUs</h2>
+    </div>
   )
 }
 

@@ -1,5 +1,7 @@
 import React from 'react'
 import Header from '../../features/Header/Header';
+import AddedProducts from '../../Components/Admin/AddedProducts/AddedProductsToProductPage';
+import AddedProductsToProductPage from '../../Components/Admin/AddedProducts/AddedProductsToProductPage';
 
 const Products = () => {
   console.log("product");
@@ -7,6 +9,7 @@ const Products = () => {
 
     <div> <Header />
       <h2 className='text-center'>Products</h2>
+      <AddedProductsToProductPage/>
     </div>
 
   )
