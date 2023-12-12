@@ -18,7 +18,7 @@ const AddedProductsToProductPage = () => {
 
 
   console.log("Added Product", products);
-  console.log("products?.pImage", products[1]?.pImage);
+  // console.log("products?.pImage", products[1]?.pImage);
   return (
 
     <div className='mt-4'>
@@ -33,7 +33,7 @@ const AddedProductsToProductPage = () => {
               <div className='col'>
                 <div className="card">
                   
-                  <Link to="/product-details"><img src={product.pImage || dummyImage} alt="" className="card-img-top" height={200} /></Link>
+                  <Link to="/product-details"><img src={product?.pImage || dummyImage} alt="" className="card-img-top" height={200} /></Link>
 
                   <div className="card-body">
                     <h4 className="card-title text-center">
