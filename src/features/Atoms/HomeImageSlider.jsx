@@ -60,7 +60,8 @@ const HomeImageSlider = () => {
         style={{
           zIndex: 100,
           fontFamily: 'Playfair Display',
-          color: "#ffffff", }}>
+          color: "#ffffff",
+        }}>
 
         <div style={{
           top: "200px",
@@ -71,7 +72,6 @@ const HomeImageSlider = () => {
           </div>
           <div style={{ fontSize: "20px" }}>
             Healthy Milk for Good Health
-
           </div>
         </div>
         <div className="btn  px-4  py-2 rounded-pill position-absolute fs-5" style={{ top: "400px", left: "100px", backgroundColor: "#fece63" }}>Read More</div>

@@ -10,7 +10,7 @@ const SortDesceWithName = ({products,setProducts}) => {
         console.log("products",products);
     }
     return (
-        <button onClick={onClickSort} className='btn btn-success'><i class="bi bi-sort-alpha-down-alt"></i></button>
+        <button onClick={onClickSort} className='btn btn-success btn-sm'><i class="bi bi-sort-alpha-down-alt"></i></button>
           
     )
 }

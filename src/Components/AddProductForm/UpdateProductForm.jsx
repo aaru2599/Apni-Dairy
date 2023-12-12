@@ -15,7 +15,9 @@ const UpdateProductForm = () => {
         pQuantity: "",
         pSelflife: "",
         pAvailable: "",
-        pImage: null,
+        pCategory:"",
+
+        pImage: "",
     })
     const onSetImage = (event) => {
         const file = URL.createObjectURL(event.target.files[0]);
@@ -33,7 +35,7 @@ const UpdateProductForm = () => {
 
 
         toast.success("Product updated successfully", {
-            autoClose: 2000,
+            autoClose: 1000,
         });
 
         setTimeout(() => {
@@ -65,6 +67,7 @@ const UpdateProductForm = () => {
             pSelflife: productToUpdate.pSelflife ,
             pAvailable: productToUpdate.pAvailable,
             pImage:productToUpdate.pImage,
+            pCategory:productToUpdate.pCategory
         }
         )
 
@@ -109,6 +112,24 @@ const UpdateProductForm = () => {
 
                     />
                 </div>
+                <div className='d-flex flex-column'>
+                            <label>
+                                Select an option:
+
+                            </label>
+                            <select className='form-control rounded'value={values.pCategory} 
+                            onChange={e=>setValues({...values,pCategory:e.target.value})}>
+                                <option value="">Select...</option>
+                                <option value="Milk">Milk</option>
+                                <option value="Ghee">Ghee</option>
+                                <option value="Curd">Curd</option>
+                                <option value="Butter">Butter</option>
+                                <option value="Paneer">Paneer</option>
+                                <option value="FlavoredMilk">Flavored Milk</option>
+                                <option value="Sweets">Sweets</option>
+                                <option value="IceCream">IceCream</option>
+                            </select>
+                        </div>
                 <div>
                     <label > Product Quantity:</label>
                     <input
@@ -164,7 +185,7 @@ const UpdateProductForm = () => {
                             required
                             className='custom-file-input'
                             type="file"
-                          
+                            
                             accept="image/*"
                             id="file"
                             

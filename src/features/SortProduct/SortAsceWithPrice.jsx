@@ -1,13 +1,13 @@
 import React from 'react';
 
-const SortAsceWithName = ({ products, setProducts, name }) => {
+const SortAsceWithPrice = ({ products, setProducts, name }) => {
   const onClickSort = () => {
     const sortedProducts = [...products];
     const propName = name;
 
     console.log('Before sorting:', sortedProducts);
     
-    sortedProducts.sort((a, b) => a[propName].localeCompare(b[propName]));
+    sortedProducts.sort((a, b) => a[propName]-b[propName]);
 
     // console.log('After sorting:', sortedProducts);
 
@@ -15,9 +15,9 @@ const SortAsceWithName = ({ products, setProducts, name }) => {
   };
 
   return (
-    <button onClick={onClickSort} className='btn btn-warning btn-sm bi bi-sort-alpha-down'>
+    <button onClick={onClickSort} className='btn btn-warning btn-sm bi bi-sort-numeric-down'>
     </button>
   );
 };
 
-export default SortAsceWithName;
+export default SortAsceWithPrice;

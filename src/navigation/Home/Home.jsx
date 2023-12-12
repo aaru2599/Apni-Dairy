@@ -2,6 +2,8 @@ import React from 'react'
 import Header from '../../features/Header/Header';
 import Footer from '../../features/Footer/Footer';
 import HomeImageSlider from '../../features/Atoms/HomeImageSlider';
+import AboutPage from '../AboutUs/AboutPage';
+import AboutProduct from '../AboutUs/AboutProduct';
 
 const Home = () => {
   console.log("Home");
@@ -14,10 +16,14 @@ const Home = () => {
   return (
     <div style={{ position: "relative" }}>
       <Header />
-     <HomeImageSlider/>
+      <HomeImageSlider />
 
       <div className='mt-4'>
-        <Footer />
+        <AboutPage />
+        <AboutProduct />
+        <div >
+          <Footer />
+        </div>
       </div>
     </div>
   )

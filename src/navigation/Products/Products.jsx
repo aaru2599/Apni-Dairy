@@ -8,7 +8,7 @@ const Products = () => {
   return (
 
     <div> <Header />
-      <h2 className='text-center'>Products</h2>
+     <img src="src/assets/products.jpg" height={250} style={{ width: "-webkit-fill-available" }}  alt="" />
       <AddedProductsToProductPage/>
     </div>
 

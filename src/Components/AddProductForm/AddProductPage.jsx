@@ -17,6 +17,7 @@ const AddProductPage = () => {
     const [sellingPrice, setSellingPrice] = useState("")
     const [productQuantity, setProductQuantity] = useState("")
     const [productSelflife, setProductSelflife] = useState("")
+    const [productCategory, setProductCategory] = useState("")
     const [productImage, setProductImage] = useState(null)
     const [submittedData, setSubmittedData] = useState([])
     const [isShowPreviewModal, setIsShowPreviewModal] = useState(false)
@@ -38,6 +39,10 @@ const AddProductPage = () => {
 
         )
     }
+    const handleDropdownChange=(e)=>{
+        setProductCategory(e.target.value)
+    }
+    console.log("productCategory",productCategory);
     // console.log(validateForm());
     const onPreview = (e) => {
         e.preventDefault();
@@ -67,6 +72,7 @@ const AddProductPage = () => {
             pQuantity: productQuantity,
             pSelflife: productSelflife,
             pAvailable: productAvailable,
+            pCategory: productCategory,
             pImage: productImage,
         }
         setIsShowPreviewModal(false)
@@ -79,8 +85,9 @@ const AddProductPage = () => {
         setProductSelflife("")
         setSellingPrice("")
         setProductQuantity("")
+        setProductCategory("")
         setProductAvailable(false)
-        setProductImage(false)
+        setProductImage()
         localStorage.setItem(KEY_PRODUCT_DATA, JSON.stringify([...submittedData, productDataInfo]))
         toast.success("Product Added successfully", {
             autoClose: 3000,
@@ -103,8 +110,12 @@ const AddProductPage = () => {
     }, [])
     console.log("submittedData", submittedData);
     const onSetImage = (event) => {
-        const file = URL.createObjectURL(event.target.files[0]);
-        setProductImage(file)
+        const file=event.target.files[0]
+      if(file){
+        const fileURL = URL.createObjectURL(file);
+        setProductImage(fileURL)
+        console.log("productImage", productImage);
+      }
     }
     console.log("productAvailable", productAvailable);
     return (
@@ -113,7 +124,7 @@ const AddProductPage = () => {
             <div className='w-75 mx-auto border bg-secondary rounded p-2 mt-2'>
                 {/* ------------------------form------------------ */}
                 <h1>Product Form</h1>
-                <form >
+                <form className='form_style'>
                     <div>
                         <label >Product Name:</label>
                         <input
@@ -164,7 +175,24 @@ const AddProductPage = () => {
                                 onChange={(e) => setProductQuantity(e.target.value)}
                             />
                         </div>
-                        <div>
+                        <div className='d-flex flex-column'>
+                            <label>
+                                Select an option:
+
+                            </label>
+                            <select className='form-control rounded'value={productCategory} onChange={handleDropdownChange}>
+                                <option value="">Select...</option>
+                                <option value="Milk">Milk</option>
+                                <option value="Ghee">Ghee</option>
+                                <option value="Curd">Curd</option>
+                                <option value="Butter">Butter</option>
+                                <option value="Paneer">Paneer</option>
+                                <option value="FlavoredMilk">Flavored Milk</option>
+                                <option value="Sweets">Sweets</option>
+                                <option value="IceCream">IceCream</option>
+                            </select>
+                        </div>
+                        <div className='mx-5'>
                             <label >Product Availability:</label>
                             <input
 
@@ -187,6 +215,7 @@ const AddProductPage = () => {
                             onChange={(e) => setProductDetails(e.target.value)}
                         />
                     </div>
+
                     <div>
                         <label >Product ShelfLife:</label>
                         <input
@@ -219,7 +248,7 @@ const AddProductPage = () => {
 
                     >
                         Preview</button>
-                        {/* <OnPreview
+                    {/* <OnPreview
                          data-bs-toggle="modal"
                          data-bs-target="#staticBackdrop"
                          setIsFormValid={setIsFormValid}
@@ -239,6 +268,10 @@ const AddProductPage = () => {
                                     <dl className='d-flex gap-5'>
                                         <dt>Prducts Name:</dt>
                                         <dd>{productName}</dd>
+                                    </dl>
+                                    <dl className='d-flex gap-5'>
+                                        <dt>Product productCategory:</dt>
+                                        <dd>{productCategory}</dd>
                                     </dl>
                                     <dl className='d-flex gap-5'>
                                         <dt>Product Price:</dt>
