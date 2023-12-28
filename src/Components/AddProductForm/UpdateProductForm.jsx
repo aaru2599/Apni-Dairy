@@ -16,14 +16,13 @@ const UpdateProductForm = () => {
         pSelflife: "",
         pAvailable: "",
         pCategory:"",
-
         pImage: "",
     })
-    const onSetImage = (event) => {
-        const file = URL.createObjectURL(event.target.files[0]);
-        setValues({...values,pImage:file})
-        // setProductImage(file)
-    }
+    // const onSetImage = (event) => {
+    //     const file = URL.createObjectURL(event.target.files[0]);
+    //     setValues({...values,pImage:file})
+    //     // setProductImage(file)
+    // }
     const productDataSubmit = (e) => {
         e.preventDefault()
         const dataValues = JSON.parse(localStorage.getItem(KEY_PRODUCT_DATA)) || [];
@@ -184,13 +183,13 @@ const UpdateProductForm = () => {
                         <input
                             required
                             className='custom-file-input'
-                            type="file"
+                            // type="file"
                             
-                            accept="image/*"
-                            id="file"
-                            
-                            onChange={onSetImage}
-                        />
+                            id="productSelflife"
+                            value={values.pImage}
+                            onChange={e => setValues({ ...values, pImage: e.target.value })}
+                            />
+                            <img src={values.pImage} alt="" />
                     </div>
                 <button className='btn btn-primary w-100' type="submit">Update</button>
             </form>

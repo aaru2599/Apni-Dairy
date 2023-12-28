@@ -5,7 +5,8 @@ const AboutProduct = () => {
     const styles = {
         hoverStyle: {
           color: 'grey',
-          '&:hover': { color: 'blue !important' },
+          backgroundColor:"white",
+          hover: { color: 'blue !important' },
         }
       };
 
@@ -19,14 +20,14 @@ const AboutProduct = () => {
     }, [])
     console.log("newproducts", products);
     return (
-        <div style={{ height: "100vh", backgroundImage: "url(https://sktperfectdemo.com/themepack/dairy/wp-content/uploads/2020/06/sec2-bg.png) " }}>
+        <div style={{ height: "90vh", backgroundImage: "url(https://sktperfectdemo.com/themepack/dairy/wp-content/uploads/2020/06/sec2-bg.png) " }}>
             <div className='text-center my-5'>
                 <div style={{ paddingTop: "5rem" }}>
                     <div className='fs-5  fw-bolder text-info-emphasis '>What we </div>
                     <h1 className='fw-bold'>Produce</h1>
                 </div>
             </div>
-            <div className=' text-center '>
+            <div className=' text-center  '>
                 <div className='d-flex justify-content-center gap-4'>
                     {
                         products.map((product, index) =>
@@ -40,6 +41,9 @@ const AboutProduct = () => {
                     }
                 </div>
             </div>
+            {/* <div >
+             
+            </div> */}
         </div>
     )
 }

@@ -12,7 +12,7 @@ const OnPreview = ({ setIsFormValid, setIsShowPreviewModal }) => {
             sellingPrice !== '' &&
             productQuantity !== '' &&
             productSelflife.trim() !== '' &&
-            productImage !== null
+            productImage !== ''
              
         )
     }

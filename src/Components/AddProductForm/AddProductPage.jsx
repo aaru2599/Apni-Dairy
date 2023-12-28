@@ -7,6 +7,7 @@ import { KEY_PRODUCT_DATA } from '../../utils/localStorage';
 import { RendomId } from '../../utils/RendomId';
 import "./formStyle.css"
 import OnPreview from './OnPreview';
+import { Link } from 'react-router-dom';
 
 const AddProductPage = () => {
 
@@ -27,7 +28,7 @@ const AddProductPage = () => {
 
     // const navigate = useNavigate()
     const validateForm = () => {
-        console.log("productImage", productImage);
+
 
         return (
             productName.trim() !== '' &&
@@ -35,7 +36,7 @@ const AddProductPage = () => {
             sellingPrice !== '' &&
             productQuantity !== '' &&
             productSelflife.trim() !== '' &&
-            productImage !== null
+            productImage !== ''
 
         )
     }
@@ -44,19 +45,23 @@ const AddProductPage = () => {
     }
     console.log("productCategory", productCategory);
     // console.log(validateForm());
+    console.log("isShowPreviewModal",isShowPreviewModal);
     const onPreview = (e) => {
         e.preventDefault();
         const isValid = validateForm();
-        setIsFormValid(isValid);
+        // setIsFormValid(isValid);
+        setIsShowPreviewModal(isValid);
+        console.log("isValid",isValid);
+        
+    if (isValid) {
+    } else {
+        toast.error("Please fill in all required fields.", {
+            autoClose: 3000,
+        });
+    }
 
-        if (isValid) {
-            setIsShowPreviewModal(true);
-        } else {
-            toast.error("Please fill in all required fields.", {
-                autoClose: 3000,
-            });
-        }
     };
+
 
     const onCloseModal = () => {
         setIsShowPreviewModal(false)
@@ -87,7 +92,7 @@ const AddProductPage = () => {
         setProductQuantity("")
         setProductCategory("")
         setProductAvailable(false)
-        setProductImage()
+        setProductImage("")
         localStorage.setItem(KEY_PRODUCT_DATA, JSON.stringify([...submittedData, productDataInfo]))
         toast.success("Product Added successfully", {
             autoClose: 3000,
@@ -109,32 +114,33 @@ const AddProductPage = () => {
         }
     }, [])
     console.log("submittedData", submittedData);
-    const onSetImage = (event) => {
-        const file = event.target.files[0]
-        if (file) {
-            const fileURL = URL.createObjectURL(file);
-            setProductImage(fileURL)
-            console.log("productImage", productImage);
-        }
-    }
+    // const onSetImage = (event) => {
+    //     const file = event.target.files[0]
+    //     if (file) {
+    //         const fileURL = URL.createObjectURL(file);
+    //         setProductImage(fileURL)
+    //         console.log("productImage", productImage);
+    //     }
+    // }
+
     console.log("productAvailable", productAvailable);
     const formMain = {
         backgroundImage: "url(https://image.freepik.com/free-photo/dairy-products-black-wooden-background-top-view_88281-3088.jpg)",
         width: "100%",
         height: "100vh",
-        overflow:"hidden",
+        // overflow: "hidden",
         backgroundRepeat: "no-repeat",
         backgroundSize: "100%",
-position:"relative"
+        position: "relative"
     }
     return (
 
         <div style={formMain} >
             <div>
-                <button className='btn btn-info position-absolute bi bi ' style={{top:"50px",left:"100px"}}>Back</button>
+                <Link to="/admin" className='btn btn-info position-absolute bi bi ' style={{ top: "50px", left: "100px" }}>Back</Link>
             </div>
-            <div className='d-flex justify-content-center mt-5'>
-                <div className='w-50 p-2  text-light mx-auto border bg-transpatant rounded  '>
+            <div className='d-flex justify-content-center '>
+                <div className='w-50 p-1  mt-4 text-light mx-auto border bg-transpatant rounded  '>
                     {/* ------------------------form------------------ */}
                     <h1 className='text-center'>Product Form</h1>
                     <form className='form_style'>
@@ -188,9 +194,9 @@ position:"relative"
                                     onChange={(e) => setProductQuantity(e.target.value)}
                                 />
                             </div>
-                            <div className='d-flex flex-column'>
+                            <div className=''>
                                 <label>
-                                    Select an option:
+                                    Select Category:
 
                                 </label>
                                 <select className='form-control rounded' value={productCategory} onChange={handleDropdownChange}>
@@ -247,12 +253,16 @@ position:"relative"
                             <input
                                 required
                                 className='custom-file-input'
-                                type="file"
-                                accept="image/*"
+                                // type="file"
+                                // accept="image/*"
+                                value={productImage}
                                 id="productImage"
 
-                                onChange={onSetImage}
+
+                                onChange={(e) => setProductImage(e.target.value)}
                             />
+                            <img className='p-2 rounded' width={50} src={productImage} alt="" />
+
                         </div>
                         <button className='btn btn-primary w-100 '
                             data-bs-toggle="modal"
@@ -269,7 +279,7 @@ position:"relative"
                           /> */}
 
                         {/* -------------------------modal-----u----------------------- */}
-                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard={`${isShowPreviewModal === true ? "false" : ""}`} tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal fade text-dark" id={isShowPreviewModal?"staticBackdrop":""} data-bs-backdrop="static" data-bs-keyboard={false} tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="false">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -330,37 +340,6 @@ position:"relative"
                 </div>
             </div>
 
-            {/* <div className='d-flex flex-wrap justify-content-around mt-3 '>
-                {
-                    submittedData && submittedData.length > 0 ? (
-                        submittedData.map((product, index) => {
-                            return (
-                                <div class="card" key={index} style={{ width: "400px" }} >
-                                    <img src={product.pImage} class="card-img-top" alt="Image" />
-                                    <div class="card-body">
-                                        <h5 class="card-title">{product.pName}</h5>
-                                        <div className='d-flex justify-content-between'>
-                                            <h6 class="card-title">Product Price:${product.pPrice}</h6>
-                                            <h6 class="card-title">Selling Price:${product.pSellingPrice}</h6>
-
-                                        </div>
-                                        <p class="card-text">{product.pDetails}</p>
-                                        <p class="card-text">{product.pQuantity}</p>
-
-                                        <p class="card-text">
-                                            <small class="text-body-secondary">{product.pAvailable ? "Available" : "Not Available"}</small></p>
-                                        <button className='btn btn-primary'>Add To Cart</button>
-                                    </div>
-                                </div>
-
-                            )
-                        })
-                    ) : <h2>No products available</h2>
-                }
-
-
-
-            </div> */}
 
         </div>
 

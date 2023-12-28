@@ -7,17 +7,16 @@ import AboutProduct from '../AboutUs/AboutProduct';
 
 const Home = () => {
   console.log("Home");
-  const imgStyle = {
-    width: "100%",
-    // visibility: "hidden",
-    height: "500px",
-    // position: "relative"
-  }
-  return (
-    <div style={{ position: "relative" }}>
-      <Header />
-      <HomeImageSlider />
 
+  return (
+    <div className='position-relative overflow-hidden'>
+     <div className=''>
+     <Header   />
+     </div>
+     <div>
+     <HomeImageSlider />
+
+     </div>
       <div className='mt-4'>
         <AboutPage />
         <AboutProduct />

@@ -33,7 +33,7 @@ const AddedProductsToProductPage = () => {
               <div className='col'>
                 <div className="card">
                   
-                  <Link to="/product-details"><img src={product?.pImage || dummyImage} alt="" className="card-img-top" height={200} /></Link>
+                  <Link to="/product-details" className='p-3 border-bottom'><img src={product?.pImage || dummyImage} width={500}  alt="img" className="card-img-top" height={150} /></Link>
 
                   <div className="card-body">
                     <h4 className="card-title text-center">

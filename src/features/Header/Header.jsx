@@ -24,27 +24,28 @@ const logoImage = {
 const imgBackground = {
   width: "220px",
   height: "100px",
-  backgroundColor:"white",//#198754
+  backgroundColor: "white",//#198754
   position: "absolute",
-  zIndex:"1",
-  top:"0",
-  left:"60px",
-  borderRadius:"100%"
+  zIndex: "1",
+  top: "0",
+  left: "60px",
+  borderRadius: "100%"
 
   // border:"2px solid black"
 }
 const Header = () => {
 
   return (
-    <header className='   p-3' style={{ position: "relative", backgroundColor:"white" }}>
-      <div style={headerStyle}>
-        <div style={logoContainer}>
-          <Link to="/"><img style={logoImage} src="https://sktperfectdemo.com/themepack/dairy/wp-content/themes/dairy-farm/images/logo.png" alt="img" /></Link>
-          <div style={svgDiv}>
-            <div style={imgBackground}></div>
-            <svg style={{ position: "absolute", left: "0", top: "18", width: "300px", zIndex: "1" }} version="1.0" xmlns="http://www.w3.org/2000/svg" width="399.000000pt" height="130.000000pt" viewBox="0 0 399.000000 130.000000" preserveAspectRatio="xMidYMid meet">
-              <g transform="translate(0.000000,130.000000) scale(0.100000,-0.100000)" fill="white" stroke="none">
-                <path d="M0 1231 l0 -69 37 -7 c21 -4 42 -10 48 -13 9 -6 14 -8 33 -11 4 0 22
+    <div >
+      <div className='p-3' style={{ position: "relative", top: "0", backgroundColor: "white" }}>
+        <div style={headerStyle}>
+          <div style={logoContainer}>
+            <Link to="/"><img style={logoImage} src="https://sktperfectdemo.com/themepack/dairy/wp-content/themes/dairy-farm/images/logo.png" alt="img" /></Link>
+            <div style={svgDiv}>
+              <div style={imgBackground}></div>
+              <svg style={{ position: "absolute", left: "0", top: "18", width: "300px", zIndex: "1" }} version="1.0" xmlns="http://www.w3.org/2000/svg" width="399.000000pt" height="130.000000pt" viewBox="0 0 399.000000 130.000000" preserveAspectRatio="xMidYMid meet">
+                <g transform="translate(0.000000,130.000000) scale(0.100000,-0.100000)" fill="white" stroke="none">
+                  <path d="M0 1231 l0 -69 37 -7 c21 -4 42 -10 48 -13 9 -6 14 -8 33 -11 4 0 22
 -14 39 -30 l32 -29 53 27 c96 47 208 27 272 -50 l27 -32 33 32 c18 18 40 34
 47 35 8 2 23 7 34 12 37 16 137 9 182 -14 51 -27 100 -85 114 -137 15 -52 5
 -262 -14 -335 -31 -112 -31 -137 -3 -165 31 -31 49 -32 77 -2 20 21 21 27 13
@@ -61,22 +62,24 @@ const Header = () => {
 185 212 246 342 127 57 -52 79 -121 70 -212 -6 -53 -4 -64 14 -84 25 -27 32
 -27 55 -2 19 20 19 26 -1 191 -10 86 2 139 46 207 59 91 178 162 270 162 l40
 0 0 80 0 80 -1995 0 -1995 0 0 -69z"></path>
-              </g>
-            </svg>
+                </g>
+              </svg>
+
+            </div>
 
           </div>
+          <div >
+            <LinkTag to="/">Home</LinkTag>
+            <LinkTag to="/aboutus">About Us</LinkTag>
+            <LinkTag to="/products">Products</LinkTag>
+            {/* <LinkTag to="/shop">Shop</LinkTag> */}
+            <LinkTag to="/admin">Admin</LinkTag>
+            <LinkTag to="/cart" className='bi bi-cart'>Cart</LinkTag>
+          </div>
+        </div>
 
-        </div>
-        <div >
-          <LinkTag to="/">Home</LinkTag>
-          <LinkTag to="/aboutus">About Us</LinkTag>
-          <LinkTag to="/products">Products</LinkTag>
-          {/* <LinkTag to="/shop">Shop</LinkTag> */}
-          <LinkTag to="/admin">Admin</LinkTag>
-        </div>
       </div>
-
-    </header>
+    </div>
   )
 }
 export default Header

@@ -1,13 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import RouteLayout from './navigation/routers/Route.Layout.jsx'
+import store from './Redux/store.js'
+
 import "./index.css"
+import { Provider } from 'react-redux'
+import ProductsLayout from './Redux/Product/ProductsLayout.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.Fragment>
-    <RouteLayout/>
-  </React.Fragment>,
+
+    <RouteLayout />
+  </React.Fragment>
+  
+
 )
 
 

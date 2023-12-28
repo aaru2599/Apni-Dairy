@@ -10,7 +10,14 @@ import Shop from '../Shop/Shop'
 import AdminDashboard from '../../Components/Admin/AdminDashboard'
 import AddProductPage from '../../Components/AddProductForm/AddProductPage'
 import UpdateProductForm from '../../Components/AddProductForm/UpdateProductForm'
-import ProductsDetails from '../Products/ProductsDetails'
+import Cart from '../Cart/Cart'
+import ProductsLayout from '../../Redux/Product/ProductsLayout'
+import { Provider } from 'react-redux'
+import store from '../../Redux/store'
+import ProductDetails from '../../Redux/Product/ProductDetails/ProductDetails'
+import CartLayout from '../../Redux/Product/Cart/CartLayout'
+import ShimmerEffect from '../../Components/Loader/ShimmerEffect'
+import ProductDetailsEffect from '../../Components/Loader/ProductDetailsEffect'
 
 function RouteLayout() {
 
@@ -26,7 +33,13 @@ function RouteLayout() {
     },
     {
       path: "/products",
-      element: <Products />
+      element:<Provider store={store}>
+          <Products/>
+        </Provider>
+    },
+    {
+      path:"/product-details/:productId",
+      element:<ProductDetails/>
     },
     {
       path: "/shop",
@@ -46,9 +59,19 @@ function RouteLayout() {
       path: "/updateproduct/:index",
       element: <UpdateProductForm />
     },
+    
     {
-      path:"/product-details",
-      element:<ProductsDetails/>
+      path: "/cart",
+      element:<Provider store={store}>
+      <CartLayout/>
+    </Provider>
+    },
+    {
+      path:"/shimmer",
+      element:<ShimmerEffect/>
+    },{
+      path:"/shimmerdetails",
+      element:<ProductDetailsEffect/>
     }
   ])
   return (
