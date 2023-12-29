@@ -3,11 +3,15 @@ import '../../styles.css'
 import { ToastContainer } from 'react-toastify'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { KEY_PRODUCT_DATA } from '../../utils/localStorage';
-import { RendomId } from '../../utils/RendomId';
+// import { KEY_PRODUCT_DATA } from '/utils/localStorage';
+
+import { RendomId } from '/public/assets/utils/RendomId';
 import "./formStyle.css"
 import OnPreview from './OnPreview';
 import { Link } from 'react-router-dom';
+// import { KEY_PRODUCT_DATA } from '/public/assets/utils/localStorage';
+import { KEY_PRODUCT_DATA } from '/public/assets/utils/localStorage';
+// import { KEY_PRODUCT_DATA } from '/public/assets/localStorage';
 
 const AddProductPage = () => {
 

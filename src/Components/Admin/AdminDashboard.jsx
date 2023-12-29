@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../../features/Header/Header';
 import { Link } from 'react-router-dom';
 import "../../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
-import { KEY_PRODUCT_DATA, KEY_SEND_TO_PRODUCT } from '../../utils/localStorage';
+import { KEY_PRODUCT_DATA, KEY_SEND_TO_PRODUCT } from '/public/assets/utils/localStorage';
 import SortAsceWithName from '../../features/SortProduct/SortAsceWithName';
 import SortDesceWithName from '../../features/SortProduct/SortDesceWithName';
 import HeaderInput from './AdminHeader/HeaderInput';

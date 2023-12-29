@@ -1,7 +1,7 @@
 
 
 import React, { useState } from 'react'
-import { KEY_PRODUCT_DATA, KEY_SEND_TO_PRODUCT } from '../../../utils/localStorage';
+// import { KEY_PRODUCT_DATA, KEY_SEND_TO_PRODUCT } from '/utils/localStorage';
 import { Link } from 'react-router-dom';
 import { LinkTag } from '../../../features/Header/Header.Style';
 import styled from 'styled-components';
