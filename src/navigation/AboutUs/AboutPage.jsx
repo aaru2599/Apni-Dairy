@@ -6,8 +6,8 @@ const AboutPage = () => {
             <div style={{ width: "50%", height: "90vh", }}>
 
                 <div>
-                    <div>
-                        <img src="/assets/sec1-img.png" alt="" />
+                    <div style={{marginLeft:"100px"}}>
+                        <img src="/assets/sec1-img.png" width={400} height={400} alt="" />
                     </div>
                 </div>
             </div>
@@ -17,7 +17,7 @@ const AboutPage = () => {
                         <div className='position-relative'>
                             <div className='fs-5 fw-bolder text-info-emphasis' >About Milk Form </div>
                             <div className='fs-1 fw-bold'>Dairy Form</div>
-                            <div style={{ position: "absolute", top: "-30px", left: "-110px" }}>
+                            <div style={{ position: "absolute", top: "-30px", left: "-130px" }}>
                                 <img src="/assets/cow-head.png" className='position-absolute' width={100} alt="" />
 
                             </div>
@@ -28,7 +28,7 @@ const AboutPage = () => {
                         </div>
                     </section>
                     <section style={{ position: "relative" }}>
-                        <div className='bg-warning d-flex justify-content-around' style={{ height: "250px", position: "absolute", width: "600px", bottom: "-300px" }}>
+                        <div className='bg-warning d-flex justify-content-around' style={{ height: "200px", position: "absolute", width: "500px", bottom: "-250px" }}>
                             <div className='d-flex flex-row align-items-center'>
                                 <div><img src="/assets/goat-white.png" alt="" /></div>
                                 <div className='text-light'>

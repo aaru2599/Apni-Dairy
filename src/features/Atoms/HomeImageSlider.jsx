@@ -2,6 +2,8 @@ import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./ImageSlider.css"; // Create a CSS file for your styles
+import { Fade } from "@mui/material";
+import { FastForward } from "@mui/icons-material";
 
 const HomeImageSlider = () => {
   const images = [
@@ -12,10 +14,10 @@ const HomeImageSlider = () => {
 
   return (
     <div className="slider-container position-relative">
-      <Carousel showThumbs={false} infiniteLoop={true}>
+      <Carousel showThumbs={false} onClickThumb={true}  infiniteLoop={true} autoPlay={FastForward}  animationHandler={"fade"} showArrows={false}>
         {images.map((image, index) => (
           <div key={index}>
-            <img src={image.url} alt={image.alt} />
+            <img src={image.url} height={500} style={{objectFit:"cover"}} alt={image.alt} />
           </div>
         ))}
       </Carousel>
@@ -64,10 +66,10 @@ const HomeImageSlider = () => {
         }}>
 
         <div style={{
-          top: "200px",
+          top: "150px",
           left: "100px"
         }} className="position-absolute   ">
-          <div style={{ fontSize: "76px", fontWeight: "bold", }}>
+          <div style={{ fontSize: "56px", fontWeight: "bold", }}>
             Milk Farm
           </div>
           <div style={{ fontSize: "20px" }}>

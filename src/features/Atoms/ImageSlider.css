@@ -3,15 +3,18 @@
 .slider-container {
   width: 100%;
   margin: auto;
+
+  /* height: 100vh; */
   /* padding: 20px; */
 }
 .carousel-status {
   display: none;
 }
 .rounded-pill:hover{
-  /* background-color:#ffffff; */
-  /* border: none; */
-  /* border-color:#ffffff ; */
-  /* color: black; */
+   background-color:#ffffff; 
+   /* border: none;  */
+   /* font-size: 20px; */
+   /* border-color:#ffffff ;  */
+   /* color: black;  */
 }
 /* You can add more styles based on your design preferences */

@@ -34,9 +34,9 @@ const ProductsLayout = () => {
   }, [products]);
 
   const onAddToCart = (product) => {
-    toast(`${product.pName} Added to cart `, {
+    toast.success(`${product.pName} Added to cart `, {
       autoClose: 1000,
-  });
+    });
 
     dispatcher(addToCart(product));
   };
@@ -62,12 +62,15 @@ const ProductsLayout = () => {
                 </Link>
 
                 <div className="card-body">
-                  <h4 className="card-title text-center text-truncate">
+                  <h4 className="card-title  text-truncate">
                     {product.pName}
                   </h4>
-                  <div className='d-flex justify-content-between'>
+                  <div className=''>
                     <div>&#8377; {product.pPrice}</div>
-                    <button onClick={() => onAddToCart(product)} className='btn btn-sm btn-secondary text-center'>Add To Cart</button>
+                    <div className='text-center'>
+                      <button onClick={() => onAddToCart(product)} className='text center btn btn-sm btn-secondary text-center'>Add To Cart</button>
+
+                    </div>
                   </div>
                 </div>
               </div>

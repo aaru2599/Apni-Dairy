@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { KEY_PRODUCT_DATA } from '/public/assets/utils/localStorage';
-// import { KEY_PRODUCT_DATA } from '/public/assets/utils/localStorage';
 
 const UpdateProductForm = () => {
     const navigate = useNavigate()

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { removeFromCart, updateCartQuantity, } from './CartSlice'
 import { Link } from 'react-router-dom'
 import Header from '../../../features/Header/Header'
+import { ToastContainer, toast } from 'react-toastify'
 
 const CartLayout = () => {
     const cartList = useSelector((state) => state.myCart)
@@ -21,7 +22,12 @@ const CartLayout = () => {
         console.log(removeProduct);
         const isCoonfirm = confirm(`Do you want to remove ${removeProduct.pName} product`)
         if (isCoonfirm) {
+            
             dispatcher(removeFromCart(removeProduct))
+                toast.warning(`${removeProduct.pName} Removed`,{
+                    autoClose:1000
+                }) 
+            
         }
     }
 
@@ -199,6 +205,7 @@ const CartLayout = () => {
                     <div><Link to="/products">Continue Sopping</Link></div>
                 </div>
             }
+            <ToastContainer/>
         </div >
     )
 }
