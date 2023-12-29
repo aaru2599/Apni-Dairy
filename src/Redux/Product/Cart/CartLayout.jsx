@@ -3,6 +3,7 @@ import "../Cart/Cart.css"
 import { useDispatch, useSelector } from 'react-redux'
 import { removeFromCart, updateCartQuantity, } from './CartSlice'
 import { Link } from 'react-router-dom'
+import Header from '../../../features/Header/Header'
 
 const CartLayout = () => {
     const cartList = useSelector((state) => state.myCart)
@@ -43,13 +44,14 @@ const CartLayout = () => {
 
     return (
         <div className='main-div'>
-            
-            <div>
-                <h2 className='d-flex m-5'>Cart</h2>
+            <Header />
+
+            <div  className='d-flex justify-content-center'>
+                <div className='text-center  w-10 bg-success fs-2 fw-bold  rounded  my-3'>Cart</div>
             </div>
             {
                 cartData.length > 0 ? (
-                    <div className='d-flex justify-content-around'>
+                    <div className='d-flex p-4 justify-content-around'>
                         <div className='bg-white rounded p-2'>
 
                             <table className='p-1  table table-hover  ' style={{ width: "35rem" }}>
@@ -69,13 +71,13 @@ const CartLayout = () => {
                                                             <div className='w-75 d-flex flex-column gap-3'>
                                                                 <div className='d-flex justify-content-between flex-column gap-2'>
                                                                     <div className='text-body-secondary'>{product.pDetails}</div>
-                                                                    <div><span className='border  bg-$red-300 px-1 rounded'>Size: {product.pQuantity}</span></div>
+                                                                    <div><span className='border  bg-$red-300 px-1 rounded'>Size: {product.count}</span></div>
                                                                 </div>
                                                                 <div className='d-flex justify-content-between'>
-                                                                    <div>{product.pPrice}</div>
-                                                                    <div><button className='btn bi bi-star'></button>
-                                                                        <button>-</button><span>{product.count}</span>
-                                                                        <button>+</button></div>
+                                                                    <div>&#8377; {product.pPrice}</div>
+                                                                    <div><button className=' btn  bi bi-trash-fill text-body-secondary ' onClick={() => onClickProductRemove(product.pId)}></button>
+                                                                        <button className=' btn  bi bi-dash-circle fw-bold' onClick={() => onClickDecrease(product.pId)}></button><span className='text-body-secondary'>{product.count}</span>
+                                                                        <button className=' btn bi bi-plus-circle' onClick={() => onClickIncrease(product.pId)}></button></div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -119,13 +121,77 @@ const CartLayout = () => {
                                 </tfoot> */}
                             </table>
                         </div>
-                        <div className='w-25'>
-                            <div className='d-flex flex-column gap-1 align-items-center bg-white p-4'>
-                                <div><h5 className='fw-bold'> SubTotal: &#8377;{newTotalPrice}</h5></div>
+                        <div className='w-25 '>
+                            <div className='d-flex rounded flex-column gap-1 align-items-center bg-white p-4'>
+                                <table className=' table '>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div>Order Summary</div>
+                                                <div>
+                                                    {
+                                                        cartData.map((item) => {
+                                                            return (
+                                                                <div className='d-flex justify-content-between' key={item.pId}>
+                                                                    <div><span>{item.count}*</span><span>{item.pName}</span></div>
+                                                                    <div>&#8377; {item.pPrice * item.count}</div>
+                                                                </div>
+                                                            )
+                                                        })
+                                                    }
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+
+                                                <div className='d-flex justify-content-between text-secondary'>
+                                                    <div>Fast Delivery with</div>
+                                                    <div>&#8377; 50</div>
+                                                </div>
+                                                <div>
+                                                    <div ><span className='text-secondary bi bi-truck'></span> <span className='mx-1'>Ecom Express</span></div>
+                                                    <div><span className='bi bi-geo-alt'></span><span className='text-secondary mx-2'>Deliver to </span> <span>Your Home</span></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div className='d-flex justify-content-between'>
+
+                                                    <div>Total Amount:</div>
+                                                    <div>&#8377; {totalPrice + 50}</div>
+                                                </div>
+                                                <div className='d-flex justify-content-between'>
+                                                    <div>Discount:</div>
+                                                    <div>-10%</div>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className='d-flex justify-content-between'>
+                                                <div>Total Payable Amount:</div>
+                                                <div>{newTotalPrice}</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button className='btn btn-warning w-100'>CheckOut</button>
+                                                <div className='text-center '>
+                                                    <Link to={"/products"}>Continue Shopping</Link>
+
+                                                </div>                                        </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                {/* <div><h5 className='fw-bold'> SubTotal: &#8377;{newTotalPrice}</h5></div>
                                 <div className='fs-6 text-secondary'>Free Shipping</div>
                                 <div><button className='btn btn-warning'>Checkout <i className='bi bi-person-lock'></i></button></div>
-                                <div> or <span className='text-primary'>Continue Shopping</span></div>
+                                <div> or <span className='text-primary'>Continue Shopping</span></div> */}
                             </div>
+
                         </div>
                     </div>
                 ) : <div className='text-center'>
@@ -133,7 +199,7 @@ const CartLayout = () => {
                     <div><Link to="/products">Continue Sopping</Link></div>
                 </div>
             }
-        </div>
+        </div >
     )
 }
 

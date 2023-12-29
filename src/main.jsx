@@ -9,10 +9,9 @@ import ProductsLayout from './Redux/Product/ProductsLayout.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.Fragment>
-
-    <RouteLayout />
-  </React.Fragment>
+  <Provider store={store}>
+  <RouteLayout/>
+</Provider>
   
 
 )

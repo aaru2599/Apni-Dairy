@@ -34,8 +34,8 @@ const cartSlice = createSlice({
             const productToUpdate = state.data.find((item) => item.pId === productId)
             if (productToUpdate) {
                 productToUpdate.count = quantity;
-                const isConfirm = window.confirm("confirm")
-                if (isConfirm) {
+               
+                 
                     if (quantity === 0) {
                         const productIndex = state.data.findIndex((item) => item.pId === productId)
                         if (productIndex) {
@@ -47,7 +47,7 @@ const cartSlice = createSlice({
 
                         }
                     }
-                }
+                
             }
         }
     }

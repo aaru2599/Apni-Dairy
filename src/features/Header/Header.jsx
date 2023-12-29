@@ -1,6 +1,8 @@
 import React from 'react'
 import { LinkTag, headerDiv } from './Header.Style';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import "../../Redux/Product/Cart/Cart.css"
 
 const headerStyle = {
   display: "flex",
@@ -34,9 +36,10 @@ const imgBackground = {
   // border:"2px solid black"
 }
 const Header = () => {
-
+  const cartList = useSelector((state) => state.myCart)
+  console.log("cartList", cartList);
   return (
-    <div >
+    <div className='main-div' >
       <div className='p-3' style={{ position: "relative", top: "0", backgroundColor: "white" }}>
         <div style={headerStyle}>
           <div style={logoContainer}>
@@ -74,7 +77,7 @@ const Header = () => {
             <LinkTag to="/products">Products</LinkTag>
             {/* <LinkTag to="/shop">Shop</LinkTag> */}
             <LinkTag to="/admin">Admin</LinkTag>
-            <LinkTag to="/cart" className='bi bi-cart'>Cart</LinkTag>
+            <LinkTag to="/cart" className='bi bi-cart  position-relative' >{cartList.data.length > 0 && <span className='position-absolute top-0 start-100 translate-middle badge fs-6 rounded-pill bg-success'>{cartList.data.length}</span>}</LinkTag>
           </div>
         </div>
 

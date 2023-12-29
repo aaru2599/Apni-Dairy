@@ -2,13 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 const AboutProduct = () => {
     const [products, setProducts] = useState([])
-    const styles = {
-        hoverStyle: {
-          color: 'grey',
-          backgroundColor:"white",
-          hover: { color: 'blue !important' },
-        }
-      };
+ 
 
     useEffect(() => {
         fetch('src/utils/aboutproduct.json')
@@ -28,12 +22,12 @@ const AboutProduct = () => {
                 </div>
             </div>
             <div className=' text-center  '>
-                <div className='d-flex justify-content-center gap-4'>
+                <div className='d-flex  justify-content-center gap-4'>
                     {
                         products.map((product, index) =>
-                            <div style={styles.hoverStyle} key={index}>
+                            <div className='bg-white rounded' key={index}>
 
-                                <div><img src={product.pImage} alt="" /></div>
+                                <div><img className='p-1' src={product.pImage} alt="" /></div>
                                 <h3 style={{ fontFamily: "Playfair Display Sans-serif", fontWeight: "bold" }}>{product.pName}</h3>
                             </div>
                         )
