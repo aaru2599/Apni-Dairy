@@ -8,8 +8,10 @@ import { FastForward } from "@mui/icons-material";
 const HomeImageSlider = () => {
   const images = [
     { url: "/assets/slider1.jpg", alt: "Image 1" },
-    { url: "/assets/slider3.jpg", alt: "Image 2" },
-    { url: "/assets/slider1.jpg", alt: "Image 3" },
+    { url: "/assets/slider2.jpg", alt: "Image 2" },
+    { url: "/assets/slider3.jpg", alt: "Image 3" },
+    { url: "/assets/slider4.jpg", alt: "Image 4" },
+    { url: "/assets/slider5.jpg", alt: "Image 5" },
   ];
 
   return (
