@@ -9,7 +9,7 @@ const Products = () => {
   return (
 
     <div className='overflow-hidden bg-white'> <Header />
-     <img src="src/assets/products.jpg" height={250} style={{ width: "-webkit-fill-available" }}  alt="" />
+     <img src="/assets/products.jpg" height={250} style={{ width: "-webkit-fill-available" }}  alt="" />
       {/* <AddedProductsToProductPage/> */}
       <ProductsLayout/>
     </div>

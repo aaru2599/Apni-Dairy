@@ -2,21 +2,21 @@
     "aboutProduct":[
     {
         "pName": "Butter",
-        "pImage": "src/assets/butter.jpg"
+        "pImage": "/assets/butter.jpg"
        
     },
     {
         "pName": "Cheese",
-        "pImage": "src/assets/cheese.jpg"
+        "pImage": "/assets/cheese.jpg"
     }
     ,
     {
         "pName": "Cream",
-        "pImage": "src/assets/cream.jpg"
+        "pImage": "/assets/cream.jpg"
     },
     {
         "pName": "Milk",
-        "pImage": "src/assets/milk-bottles.jpg"
+        "pImage": "/assets/milk-bottles.jpg"
         
     }
 ]

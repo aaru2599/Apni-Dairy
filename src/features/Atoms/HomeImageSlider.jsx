@@ -5,9 +5,9 @@ import "./ImageSlider.css"; // Create a CSS file for your styles
 
 const HomeImageSlider = () => {
   const images = [
-    { url: "src/assets/slider1.jpg", alt: "Image 1" },
-    { url: "src/assets/slider3.jpg", alt: "Image 2" },
-    { url: "src/assets/slider1.jpg", alt: "Image 3" },
+    { url: "/assets/slider1.jpg", alt: "Image 1" },
+    { url: "/assets/slider3.jpg", alt: "Image 2" },
+    { url: "/assets/slider1.jpg", alt: "Image 3" },
   ];
 
   return (
