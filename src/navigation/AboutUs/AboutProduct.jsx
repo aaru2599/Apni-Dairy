@@ -5,7 +5,7 @@ const AboutProduct = () => {
  
 
     useEffect(() => {
-        fetch('/public/assets/utils/aboutproduct.json')
+        fetch('/assets/aboutproduct.json')
             .then(response => response.json())
             .then(data => (setProducts(data.aboutProduct)));
         console.log("products", products);
