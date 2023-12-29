@@ -2,6 +2,7 @@ import React from 'react'
 import { ShimmerPostItem } from 'react-shimmer-effects'
 
 const ProductDetailsEffect = () => {
+  
   return (
     <div style={{width:"500px"}}>
          <ShimmerPostItem
