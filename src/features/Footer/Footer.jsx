@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <div className='position-relative'>
             <div>
-            <svg className="position-absolute" style={{ top: "-20px", zIndex:"1000"}} version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400.000000 26.000000" preserveAspectRatio="xMidYMid meet">
+                <svg className="position-absolute" style={{ top: "-20px", zIndex: "1000" }} version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400.000000 26.000000" preserveAspectRatio="xMidYMid meet">
                     <g transform="translate(0.000000,26.000000) scale(0.100000,-0.100000)" fill="#212529" stroke="none">
                         <path d="M3740 249 c-14 -6 -38 -12 -55 -14 -206 -26 -243 -34 -300 -64 -33
 -17 -81 -36 -107 -41 -27 -6 -69 -15 -95 -20 -69 -16 -223 -21 -223 -8 0 7
@@ -40,63 +40,64 @@ const Footer = () => {
                     </g>
                 </svg>
             </div>
-            <div className='mw-1100px  bg-dark text-light'>
-           
-           <div className='d-flex p-4 justify-content-around '>
-               <div className='w-25'>
-                   <h2>{`About Us`.toUpperCase()}</h2>
-                   <p style={{ width: "250px" }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem ipsum modi officia, dolorem molestiae quia! Incidunt </p>
-               </div>
-               <div className='w-25'>
-                   <h2> {`Our Services`.toUpperCase()}</h2>
-                   <div>
-                       <ul className='list-unstyled serviceStyle' >
-                           <li><Link to="/">Dairy Product</Link></li>
-                           <li><Link to="/">Bakery Product</Link></li>
-                           <li><Link to="/">Food Product</Link></li>
+            <div className=' py-3 mw-1100px footer_css bg-dark text-light'>
 
-                       </ul>
-                   </div>
-               </div>
-               <div className='w-25'>
-                   <h2> {`Quick Links`.toUpperCase()}</h2>
-                   <div>
-                       <ul className='list-unstyled serviceStyle'>
-                           <li><Link to="/">Home</Link></li>
-                           <li><Link to="/aboutus">AboutUs</Link></li>
-                           <li><Link to="/products">Products</Link></li>
-                           <li><Link to="/products">Contact Us</Link></li>
+                <div className=' d-flex px-4 justify-content-around '>
+                    <div className='w-25'>
+                        <h2>{`About Us`.toUpperCase()}</h2>
+                        <p style={{ width: "250px" }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem ipsum modi officia, dolorem molestiae quia! Incidunt </p>
+                    </div>
+                    <div className='w-25'>
+                        <h2> {`Our Services`.toUpperCase()}</h2>
+                        <div>
+                            <ul className='list-unstyled serviceStyle' >
+                                <li><Link to="/">Dairy Product</Link></li>
+                                <li><Link to="/">Bakery Product</Link></li>
+                                <li><Link to="/">Food Product</Link></li>
 
-                       </ul>
-                   </div>
-               </div>
-               <div className='w-25'>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className='w-25'>
+                        <h2> {`Quick Links`.toUpperCase()}</h2>
+                        <div>
+                            <ul className='list-unstyled serviceStyle'>
+                                <li><Link to="/">Home</Link></li>
+                                <li><Link to="/aboutus">AboutUs</Link></li>
+                                <li><Link to="/products">Products</Link></li>
+                                <li><Link to="/products">Contact Us</Link></li>
 
-                   <h2>{`Contact Info`.toUpperCase()}</h2>
-                   <div>
-                       <p>
-                           Street 238,52 tempor
-                           Donec ultricies mattis nulla
-                           risus tristique ut.
-                       </p>
-                       <p>
-                           Phone: +01 23 456 7890
-                       </p>
-                       <p>
-                           E-mail:support@apnidairy.com
-                       </p>
-                       <p>
-                           Website:https://apnidairy.com
-                       </p>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className='w-25'>
 
-                   </div>
-               </div>
+                        <h2>{`Contact Info`.toUpperCase()}</h2>
+                        <div>
+                            <p>
+                                Street 238,52 tempor
+                                Donec ultricies mattis nulla
+                                risus tristique ut.
+                            </p>
+                            <p>
+                                Phone: +01 23 456 7890
+                            </p>
+                            <p>
+                                E-mail:support@apnidairy.com
+                            </p>
+                            <p>
+                                Website:https://apnidairy.com
+                            </p>
 
-           </div>
-       </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div className='text-center'>Crafted By Arvind With 	&#129505;</div>
+            </div>
         </div>
 
-       
+
     )
 }
 

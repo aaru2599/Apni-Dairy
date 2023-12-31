@@ -41,7 +41,7 @@ const ProductDetails = () => {
       ) : (
         showDetails && (
           <div style={{ height: "100vh" }} className='d-flex justify-content-center align-items-center'>
-            <div class="card" style={{ maxWidth: "540px" }} >
+            <div class="card p-3" style={{ maxWidth: "500px", }} >
               <div class="row g-0">
                 <div class="col-md-4">
                   <img src={selectedProduct.pImage} class="img-fluid rounded-start" alt="..." />

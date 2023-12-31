@@ -16,7 +16,7 @@ const HomeImageSlider = () => {
 
   return (
     <div className="slider-container position-relative">
-      <Carousel showThumbs={false} onClickThumb={true}  infiniteLoop={true} autoPlay={FastForward}  animationHandler={"fade"} showArrows={false}>
+      <Carousel    showThumbs={false} onClickThumb={true}  infiniteLoop={true} autoPlay={FastForward}  animationHandler={"fade"} showArrows={true}>
         {images.map((image, index) => (
           <div key={index}>
             <img src={image.url} height={500} style={{objectFit:"cover"}} alt={image.alt} />

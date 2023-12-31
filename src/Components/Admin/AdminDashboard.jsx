@@ -10,6 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Switch from "react-switch";
 import SortAsceWithPrice from '../../features/SortProduct/SortAsceWithPrice';
 import SortDesceWithPrice from '../../features/SortProduct/SortDesceWithPrice';
+import _ from 'lodash';
 
 
 
@@ -17,13 +18,14 @@ import SortDesceWithPrice from '../../features/SortProduct/SortDesceWithPrice';
 const AdminDashboard = () => {
   const [searchText, setSearchText] = useState('');
   const [products, setProducts] = useState([]);
-  // const [updatedProduct, setUpdatedProduct] = useState([])
-
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const storageData = JSON.parse(localStorage.getItem(KEY_PRODUCT_DATA)) || [];
     setProducts(storageData);
-
+    setFilteredProducts(storageData);
 
   }, []);
 
@@ -49,36 +51,25 @@ const AdminDashboard = () => {
     }
 
   };
+  const delayedSearch = _.debounce((value) => {
+    setIsSearching(true);
+    setIsLoading(true);
 
+    const filtered = products
+      .filter((product) =>
+        product.pName && product.pName.toLowerCase().includes(value.toLowerCase())
+      );
 
+    setFilteredProducts(filtered);
+     setIsSearching(false);
+    setIsLoading(false);
+  }, 800);
 
-
-  // const onClickSendToProduct = (e) => {
-  //   const index = e.target.value;
-  //   const productToUpdate = products[Number(index)];
-  //   const newProduct = JSON.parse(localStorage.getItem(KEY_SEND_TO_PRODUCT)) || [];
-
-  //   console.log("newProduct", newProduct);
-  //   console.log("productToUpdate", productToUpdate);
-  //   if (productToUpdate) {
-  //     const index = newProduct.findIndex((product) => product.pId === productToUpdate.pId)
-  //     console.log("index", index);
-  //     if (!index !== -1) {
-  //       setUpdatedProduct([...updatedProduct, productToUpdate]);
-  //       localStorage.setItem(KEY_SEND_TO_PRODUCT, JSON.stringify([...updatedProduct, productToUpdate]));
-  //       toast.success("Product send successfully", {
-  //         autoClose: 2000,
-  //       });
-  //     } else {
-  //       toast.warning("Product Already Sent", {
-  //         autoClose: 2000,
-  //       });
-  //     }
-  //   }
-
-
-  // };
-
+  const searchProduct = (e) => {
+    const inputValue = e.target.value;
+    setSearchText(inputValue);
+    delayedSearch(inputValue);
+  };
   return (
 
     <div>
@@ -121,15 +112,24 @@ const AdminDashboard = () => {
           <div className='d-flex justify-content-between p-2' >
             <div>
               <h3>Products List</h3>
-              <HeaderInput setSearchText={setSearchText} searchText={searchText} />
+              <input className='form-control w-100'
+                type="search"
+                placeholder='Search Product'
+                value={searchText}
+                onChange={searchProduct} />
             </div>
             <div>
               <Link className='btn btn-success' to="/addproduct">+ Add Product</Link>
             </div>
           </div>
+          {isSearching && (
+            <div className="text-center mt-3">
+              <p>Loading search results...</p>
+            </div>
+          )}
 
           {
-            products.length > 0 ? (
+            !isLoading && !isSearching  && filteredProducts.length > 0 ? (
               <table className="table table-striped">
 
                 <thead>
@@ -151,37 +151,33 @@ const AdminDashboard = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {
-                    products
-                      .filter((product) =>
-                        product.pName && product.pName.toLowerCase().includes(searchText.toLowerCase())
-                      )
-                      .map((product, index) => (
-                        <tr key={index}>
+                  {filteredProducts
+                    .map((product, index) => (
+                      <tr key={index}>
 
-                          <th className='text-center'>{index + 1}</th>
-                          <th className='text-center' scope="row">
-                            <img src={product.pImage} width={40} height={40} className='rounded-circle' alt="img" />
-                          </th>
-                          <th className='text-center'>{product.pName}</th>
-                          <td className='text-center'>{product.pPrice}</td>
-                          <td className='text-center'>{product.pSellingPrice}</td>
-                          <td className='text-center'>{product.pQuantity}</td>
-                          <td className='text-center'>{product.pCategory}</td>
-                          <td className='text-center'>{product.pAvailable ? "InStock" : "Out of Stock"}</td>
-                          <td className='text-center'>{product.pSelflife}</td>
-                          <td className='text-center  '>
-                            <Link className="  " index={index} to={`/updateproduct/${index}`}>
-                              <i className="bi bi-pencil-square "></i>
-                            </Link>
-                            <button className='btn bi bi-trash3'
-                              value={index}
-                              onClick={onRemoveItem}></button>
+                        <th className='text-center'>{index + 1}</th>
+                        <th className='text-center' scope="row">
+                          <img src={product.pImage} width={40} height={40} className='rounded-circle' alt="img" />
+                        </th>
+                        <th className='text-center'>{product.pName}</th>
+                        <td className='text-center'>{product.pPrice}</td>
+                        <td className='text-center'>{product.pSellingPrice}</td>
+                        <td className='text-center'>{product.pQuantity}</td>
+                        <td className='text-center'>{product.pCategory}</td>
+                        <td className='text-center'>{product.pAvailable ? "InStock" : "Out of Stock"}</td>
+                        <td className='text-center'>{product.pSelflife}</td>
+                        <td className='text-center  '>
+                          <Link className="  " index={index} to={`/updateproduct/${index}`}>
+                            <i className="bi bi-pencil-square "></i>
+                          </Link>
+                          <button className='btn bi bi-trash3'
+                            value={index}
+                            onChange={onRemoveItem}></button>
 
 
-                          </td>
-                        </tr>
-                      ))
+                        </td>
+                      </tr>
+                    ))
                   }
                 </tbody>
 

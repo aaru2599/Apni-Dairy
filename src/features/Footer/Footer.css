@@ -1,5 +1,3 @@
-
-
 /* Style the content with a ">" symbol */
 .serviceStyle li::before {
     content: ">";
@@ -13,7 +11,7 @@
 .serviceStyle li:hover::before {
     color: aqua;
 }
-     
+
 .serviceStyle p {
     font-size: 1.2rem;
 }
@@ -21,4 +19,9 @@
 .serviceStyle li a {
     text-decoration: none;
     color: white;
+}
+
+.footer_css {
+    font-family: cursive;
+
 }
