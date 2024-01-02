@@ -4,6 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./ImageSlider.css"; // Create a CSS file for your styles
 import { Fade } from "@mui/material";
 import { FastForward } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 const HomeImageSlider = () => {
   const images = [
@@ -78,7 +79,7 @@ const HomeImageSlider = () => {
             Healthy Milk for Good Health
           </div>
         </div>
-        <div className="btn  px-4  py-2 rounded-pill position-absolute fs-5" style={{ top: "400px", left: "100px", backgroundColor: "#fece63" }}>Read More</div>
+        <Link to={"/aboutus"} className="btn  px-4  py-2 rounded-pill position-absolute fs-5" style={{ top: "400px", left: "100px", backgroundColor: "#fece63" }}>Read More</Link>
       </div>
     </div>
   );

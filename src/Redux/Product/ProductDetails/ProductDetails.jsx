@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import ProductDetailsEffect from '../../../Components/Loader/ProductDetailsEffect';
+import Header from '../../../features/Header/Header';
 
 const ProductDetails = () => {
   const location = useLocation();
@@ -34,23 +35,33 @@ const ProductDetails = () => {
   return (
     <div className='overflow-hidden'>
       <div>
+        <Header />
+      </div>
+      <div className= 'd-flex justify-content-center pt-3'>
         <Link className='btn btn-secondary' to="/products">Back</Link>
       </div>
       {loading ? (
-        <div style={{ height: "100vh" }} className='d-flex justify-content-center align-items-center'><ProductDetailsEffect/></div>
+        <div style={{ height: "100vh" }} className='d-flex justify-content-center align-items-center'><ProductDetailsEffect /></div>
       ) : (
         showDetails && (
           <div style={{ height: "100vh" }} className='d-flex justify-content-center align-items-center'>
-            <div class="card p-3" style={{ maxWidth: "500px", }} >
-              <div class="row g-0">
-                <div class="col-md-4">
-                  <img src={selectedProduct.pImage} class="img-fluid rounded-start" alt="..." />
+            <div class="card p-3" style={{ maxWidth: "650px", }} >
+              <div class="d-flex gap-5">
+                <div class=" d-flex justify-contain-center align-items-center ">
+                  <img src={selectedProduct.pImage} class="img-fluid rounded-start object-fit-contain border" width={200} alt="..." />
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-7">
                   <div class="card-body">
                     <h5 class="card-title">{selectedProduct.pName}</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                    <p class="card-text text-body-secondary">{selectedProduct.pDetails}</p>
+                    <div className='d-flex justify-content-between'>
+                      <p class="card-text">Quantity: {selectedProduct.pQuantity} {selectedProduct.pQtyUnit}</p>
+
+                      <p class="card-text"><small class="text-body-secondary">Best Before: {selectedProduct.pSelflife} {selectedProduct.pShelfUnit}</small></p>
+
+                    </div>
+                    <p class="card-text">&#8377; {selectedProduct.pPrice}</p>
+
                     <button className='btn btn-primary'>Buy Now</button>
                   </div>
                 </div>
@@ -59,6 +70,8 @@ const ProductDetails = () => {
           </div>
         )
       )}
+
+
     </div>
   );
 };

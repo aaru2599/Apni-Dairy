@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProduct } from './products.slice';
 import { getproducts } from './Products.saga';
@@ -8,6 +8,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import ShimmerEffect from '../../Components/Loader/ShimmerEffect';
 
 const ProductsLayout = () => {
+  const [searchedProduct, setSearchedProduct] = useState([])
+  const [inputSearched, setInputSearched] = useState("")
   const products = useSelector((state) => state.myProducts);
   const isLoading = useSelector((state) => state.myProducts.isLoading);
 
@@ -18,19 +20,46 @@ const ProductsLayout = () => {
     console.log("e.target.value", product);
     navigate(`/product-details/${product.pId}`);
   };
-
+const handleFilterProductsCategory=(e)=>{
+  const filterProduct=e.target.value
+  const filteredProductcategory = products.data.filter((product) =>
+  product.pCategory && product.pCategory.toLowerCase().includes(filterProduct.toLowerCase())
+);
+setSearchedProduct(filteredProductcategory)
+}
+  const onSearch = (e) => {
+    setInputSearched(e.target.value);
+    updateSearchedProduct(e.target.value);
+  };
+  const onSearchBtnClick = () => {
+    updateSearchedProduct(inputSearched);
+  };
+  // setSearchedProduct(products.data)
+  const updateSearchedProduct = (searchText) => {
+    if (searchText.trim() === '') {
+      // If search input is empty, show all products
+      setSearchedProduct(products.data);
+    } else {
+      const filteredProduct = products.data.filter((product) =>
+        product.pName && product.pName.toLowerCase().includes(searchText.toLowerCase())
+      );
+      setSearchedProduct(filteredProduct);
+    }
+  };
   useEffect(() => {
-    // Simulate a delay of 2 seconds before fetching the product data
     const delay = setTimeout(() => {
       dispatcher(getProduct());
     }, 2000);
 
-    // Cleanup function to clear the timeout if the component unmounts or if the data is already loaded
     return () => clearTimeout(delay);
   }, [dispatcher]);
 
   useEffect(() => {
     console.log("Updated products state", products);
+    if (inputSearched.trim() === '') {
+      // If search input is empty, show all products
+      setSearchedProduct(products.data);
+    }
   }, [products]);
 
   const onAddToCart = (product) => {
@@ -44,12 +73,43 @@ const ProductsLayout = () => {
   console.log("products", products);
 
   return (
-    <div className='mt-4 '>
+    <div className='m-2 '>
+
+      <div className="d-flex justify-content-center w-100 p-2">
+        <div className='d-flex gap-2 justify-content-between border'>
+
+          <input type="text"
+            className='border-0 focus-ring'
+            placeholder='Find Product...'
+            onChange={onSearch}
+          />
+          <div>
+            <select onChange={handleFilterProductsCategory} className='text-decoration-underline focus-ring link-underline-primary text-primary border-0 focus-none'
+            >
+              <option className='text-dark' value="">All Products </option>
+              <option className='text-dark' value="Milk">Milk</option>
+              <option className='text-dark' value="Ghee">Ghee</option>
+              <option className='text-dark' value="Curd">Curd</option>
+              <option className='text-dark' value="Butter">Butter</option>
+              <option className='text-dark' value="Paneer">Paneer</option>
+              <option className='text-dark' value="FlavoredMilk">Flavored Milk</option>
+              <option className='text-dark' value="Sweets">Sweets</option>
+              <option className='text-dark' value="IceCream">IceCream</option>
+            </select>
+            <button className='btn ' onClick={onSearchBtnClick}><i className='bi bi-search'></i></button>
+
+
+
+          </div>
+        </div>
+      </div>
+
+
       {isLoading && <div><ShimmerEffect /></div>}
 
       <div className='row row-cols-1 row-cols-md-5 g-3 '>
-        {products.data &&
-          products.data.map((product, index) => (
+        {searchedProduct &&
+          searchedProduct.map((product, index) => (
             <div key={product.id} className='col'>
               <div className="card bg-body-emphasis" >
                 <Link
@@ -62,12 +122,12 @@ const ProductsLayout = () => {
                 </Link>
 
                 <div className="card-body">
-                  <h4 className="card-title  text-truncate">
+                  <h6 className="card-title  text-truncate">
                     {product.pName}
-                  </h4>
+                  </h6>
                   <div className=''>
-                    <div>&#8377; {product.pPrice}</div>
-                    <div className='text-center'>
+                    <div className='d-flex justify-content-between'><div>&#8377; {product.pPrice}</div><div>{product.pQuantity} {product.pQtyUnit}</div></div>
+                    <div className=''>
                       <button onClick={() => onAddToCart(product)} className='text center btn btn-sm btn-secondary text-center'>Add To Cart</button>
 
                     </div>

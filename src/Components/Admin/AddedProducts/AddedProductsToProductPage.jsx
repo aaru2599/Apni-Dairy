@@ -45,20 +45,7 @@ const AddedProductsToProductPage = () => {
                   </div>
                 </div>
               </div>
-              // <div class="card border border-bg-gray border-radius" key={index}  >
-
-              //   <CardLink to="/product-details">
-              //     <img src={product.pImage ? product.pImage : "https://img.freepik.com/free-vector/dairy-products-realistic-composition_1284-26248.jpg?w=360&t=st=1699201773~exp=1699202373~hmac=c31f58c97983053742937ab5998a89f80edd8cebbe7a179459a099b23d091be4"} style={{ width: "300px", height: "200px" }} class="card-img-top p-1  " alt="Image" />
-              //     <div className="card-body border border-radius">
-              //       <h5 className="card-title">{product.pName}</h5>
-              //       <p className="card-title d-flex" > <span>Price:</span> <span className='d-flex align-item-center gap-1'><del className='fs-6 text-secondary'>&#8377;{product.pPrice}   </del> <span className='fs-5'>{product.pSellingPrice}</span> </span></p>
-              //       <p className="card-text">{product.pDetails}</p>
-              //       <p className="card-text text-primary">
-              //         <small className={`${product.pAvailable ? "text-success" : "text-danger"}`}  >{product.pAvailable ? "Available" : "Not Available"}</small></p>
-              //       <button className='btn btn-primary'>Add To Cart</button>
-              //     </div>
-              //   </CardLink>
-              // </div>
+              
 
             )
           })

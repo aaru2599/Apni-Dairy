@@ -6,12 +6,9 @@ import Header from '../../features/Header/Header'
 // import Home from '../Home/Home'
 // import AboutUs from '../AboutUs/AboutUs'
 import Products from '../Products/Products'
-import Shop from '../Shop/Shop'
 import AdminDashboard from '../../Components/Admin/AdminDashboard'
 import AddProductPage from '../../Components/AddProductForm/AddProductPage'
 import UpdateProductForm from '../../Components/AddProductForm/UpdateProductForm'
-import Cart from '../Cart/Cart'
-import ProductsLayout from '../../Redux/Product/ProductsLayout'
 import { Provider } from 'react-redux'
 import store from '../../Redux/store'
 import ProductDetails from '../../Redux/Product/ProductDetails/ProductDetails'
@@ -75,11 +72,7 @@ function RouteLayout() {
       path: "/product-details/:productId",
       element: <ProductDetails />
     },
-    {
-      path: "/shop",
-      element: <Shop />
-
-    },
+   
     {
       path: "/admin",
       element: <AdminDashboard />

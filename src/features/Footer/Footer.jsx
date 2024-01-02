@@ -43,12 +43,12 @@ const Footer = () => {
             <div className=' py-3 mw-1100px footer_css bg-dark text-light'>
 
                 <div className=' d-flex px-4 justify-content-around '>
-                    <div className='w-25'>
-                        <h2>{`About Us`.toUpperCase()}</h2>
+                    <div className='w-25 serviceStyle'>
+                        <h4>{`About Us`.toUpperCase()}</h4>
                         <p style={{ width: "250px" }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem ipsum modi officia, dolorem molestiae quia! Incidunt </p>
                     </div>
                     <div className='w-25'>
-                        <h2> {`Our Services`.toUpperCase()}</h2>
+                        <h4> {`Our Services`.toUpperCase()}</h4>
                         <div>
                             <ul className='list-unstyled serviceStyle' >
                                 <li><Link to="/">Dairy Product</Link></li>
@@ -59,7 +59,7 @@ const Footer = () => {
                         </div>
                     </div>
                     <div className='w-25'>
-                        <h2> {`Quick Links`.toUpperCase()}</h2>
+                        <h4> {`Quick Links`.toUpperCase()}</h4>
                         <div>
                             <ul className='list-unstyled serviceStyle'>
                                 <li><Link to="/">Home</Link></li>
@@ -72,8 +72,8 @@ const Footer = () => {
                     </div>
                     <div className='w-25'>
 
-                        <h2>{`Contact Info`.toUpperCase()}</h2>
-                        <div>
+                        <h4>{`Contact Info`.toUpperCase()}</h4>
+                        <div className='serviceStyle'>
                             <p>
                                 Street 238,52 tempor
                                 Donec ultricies mattis nulla

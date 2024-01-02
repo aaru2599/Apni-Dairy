@@ -53,7 +53,7 @@ const CartLayout = () => {
             <Header />
 
             <div  className='d-flex justify-content-center'>
-                <div className='text-center  w-10 bg-success fs-2 fw-bold  rounded  my-3'>Cart</div>
+                <div className='text-center  w-10 bg-light fs-2   rounded  my-3'>Cart</div>
             </div>
             {
                 cartData.length > 0 ? (
@@ -133,7 +133,7 @@ const CartLayout = () => {
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <div>Order Summary</div>
+                                                <h5 className='text-secondary'>Order Summary</h5>
                                                 <div>
                                                     {
                                                         cartData.map((item) => {
@@ -178,8 +178,8 @@ const CartLayout = () => {
                                         </tr>
                                         <tr>
                                             <td className='d-flex justify-content-between'>
-                                                <div>Total Payable Amount:</div>
-                                                <div>{newTotalPrice}</div>
+                                                <div>  Total Payable Amount:</div>
+                                                <div>&#8377; {newTotalPrice}</div>
                                             </td>
                                         </tr>
                                         <tr>

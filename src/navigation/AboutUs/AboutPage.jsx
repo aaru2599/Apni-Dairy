@@ -15,8 +15,8 @@ const AboutPage = () => {
                 <div>
                     <section>
                         <div className='position-relative'>
-                            <div className='fs-5 fw-bolder text-info-emphasis' >About Milk Form </div>
-                            <div className='fs-1 fw-bold'>Dairy Form</div>
+                            <div className='fs-5 fw-bolder text-info-emphasis' >About Milk Farm </div>
+                            <div className='fs-1 fw-bold'>Dairy Farm</div>
                             <div style={{ position: "absolute", top: "-30px", left: "-130px" }}>
                                 <img src="/assets/cow-head.png" className='position-absolute' width={100} alt="" />
 

@@ -5,9 +5,9 @@ import { KEY_PRODUCT_DATA } from '/public/assets/utils/localStorage';
 
 const UpdateProductForm = () => {
     const navigate = useNavigate()
-    const { index} = useParams()
+    const { index } = useParams()
     const [values, setValues] = useState({
-        
+
         pName: "",
         pPrice: "",
         pDetails: "",
@@ -15,8 +15,10 @@ const UpdateProductForm = () => {
         pQuantity: "",
         pSelflife: "",
         pAvailable: "",
-        pCategory:"",
+        pCategory: "",
         pImage: "",
+        pQtyUnit: "",
+        pShelfUnit: "",
     })
     // const onSetImage = (event) => {
     //     const file = URL.createObjectURL(event.target.files[0]);
@@ -46,10 +48,10 @@ const UpdateProductForm = () => {
     }
     useEffect(() => {
         const dataValues = JSON.parse(localStorage.getItem(KEY_PRODUCT_DATA)) || [];
-       
-        console.log("dataValues",dataValues);
-       
-        const productToUpdate=dataValues[Number(index)]
+
+        console.log("dataValues", dataValues);
+
+        const productToUpdate = dataValues[Number(index)]
 
         console.log("productToUpdate", productToUpdate);
         // setValues([...dataValues,productToUpdate])
@@ -57,16 +59,18 @@ const UpdateProductForm = () => {
 
         setValues({
             ...values,
-            pId:productToUpdate.pId,
+            pId: productToUpdate.pId,
             pName: productToUpdate.pName,
-            pPrice: productToUpdate.pPrice ,
-            pDetails: productToUpdate.pDetails ,
+            pPrice: productToUpdate.pPrice,
+            pDetails: productToUpdate.pDetails,
             pSellingPrice: productToUpdate.pSellingPrice,
-            pQuantity: productToUpdate.pQuantity ,
-            pSelflife: productToUpdate.pSelflife ,
+            pQuantity: productToUpdate.pQuantity,
+            pSelflife: productToUpdate.pSelflife,
             pAvailable: productToUpdate.pAvailable,
-            pImage:productToUpdate.pImage,
-            pCategory:productToUpdate.pCategory
+            pImage: productToUpdate.pImage,
+            pCategory: productToUpdate.pCategory,
+            pQtyUnit: productToUpdate.pQtyUnit,
+            pShelfUnit: productToUpdate.pShelfUnit,
         }
         )
 
@@ -112,34 +116,44 @@ const UpdateProductForm = () => {
                     />
                 </div>
                 <div className='d-flex flex-column'>
-                            <label>
-                                Select an option:
+                    <label>
+                        Select an option:
 
-                            </label>
-                            <select className='form-control rounded'value={values.pCategory} 
-                            onChange={e=>setValues({...values,pCategory:e.target.value})}>
-                                <option value="">Select...</option>
-                                <option value="Milk">Milk</option>
-                                <option value="Ghee">Ghee</option>
-                                <option value="Curd">Curd</option>
-                                <option value="Butter">Butter</option>
-                                <option value="Paneer">Paneer</option>
-                                <option value="FlavoredMilk">Flavored Milk</option>
-                                <option value="Sweets">Sweets</option>
-                                <option value="IceCream">IceCream</option>
-                            </select>
-                        </div>
+                    </label>
+                    <select className='form-control rounded' value={values.pCategory}
+                        onChange={e => setValues({ ...values, pCategory: e.target.value })}>
+                        <option value="">Select...</option>
+                        <option value="Milk">Milk</option>
+                        <option value="Ghee">Ghee</option>
+                        <option value="Curd">Curd</option>
+                        <option value="Butter">Butter</option>
+                        <option value="Paneer">Paneer</option>
+                        <option value="FlavoredMilk">Flavored Milk</option>
+                        <option value="Sweets">Sweets</option>
+                        <option value="IceCream">IceCream</option>
+                    </select>
+                </div>
                 <div>
                     <label > Product Quantity:</label>
+                    <div className='d-flex gap-4'>
                     <input
                         required
-                        className='form-control'
+                        className='form-control w-50'
                         type="text"
                         id="productQuantity"
                         value={values.pQuantity}
                         onChange={e => setValues({ ...values, pQuantity: e.target.value })}
 
                     />
+                    
+                    <select className=' rounded' value={values.pQtyUnit}
+                        onChange={(e) => setValues({ ...values, pQtyUnit: e.target.value })}
+                    >
+                        <option value="ml">ml</option>
+                        <option value="gm">gm</option>
+
+                    </select>
+                    </div>
                 </div>
                 <div>
                     <label >Product Availability:</label>
@@ -151,7 +165,7 @@ const UpdateProductForm = () => {
                         checked={values.pAvailable}
                         onChange={e => setValues({ ...values, pAvailable: e.target.checked })}
 
-                    />  
+                    />
                 </div>
                 <div>
                     <label >Product Details:</label>
@@ -166,31 +180,50 @@ const UpdateProductForm = () => {
                     />
                 </div>
                 <div>
+
+
+                </div>
+
+                <div>
                     <label >Product SelfLife:</label>
-                    <input
-                        className='form-control'
-                        type="text"
-                        id="productSelflife"
-                        value={values.pSelflife}
-                        onChange={e => setValues({ ...values, pSelflife: e.target.value })}
-                    />
+                    <div className='d-flex gap-4'>
+                        <input
+                            className='form-control w-50'
+                            type="text"
+                            id="productSelflife"
+                            value={values.pSelflife}
+                            onChange={e => setValues({ ...values, pSelflife: e.target.value })}
+                        />
+                        <select className='dropdown rounded' value={values.pShelfUnit}
+                            onChange={(e) => setValues({ ...values, pShelfUnit: e.target.value })}
+                        >
+                            <option value="Day">Day</option>
+                            <option value="Week">Week</option>
+                            <option value="Month">Month</option>
+                            <option value="Year">Year</option>
+
+                        </select>
+                    </div>
                 </div>
                 <div>
-                        <label
-                            className='custom-file-label'
+                    <label
+                        className='custom-file-label'
 
-                        >Product Image </label>
+                    >Product Image </label>
+                    <div className='d-flex'>
                         <input
                             required
-                            className='custom-file-input'
+                            className='form-control'
                             // type="file"
-                            
+
                             id="productSelflife"
                             value={values.pImage}
+
                             onChange={e => setValues({ ...values, pImage: e.target.value })}
-                            />
-                            <img src={values.pImage} alt="" />
+                        />
+                        <img src={values.pImage} width={100} alt="" />
                     </div>
+                </div>
                 <button className='btn btn-primary w-100' type="submit">Update</button>
             </form>
             <ToastContainer />

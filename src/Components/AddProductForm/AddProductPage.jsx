@@ -7,11 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { RendomId } from '/public/assets/utils/RendomId';
 import "./formStyle.css"
-import OnPreview from './OnPreview';
 import { Link } from 'react-router-dom';
-// import { KEY_PRODUCT_DATA } from '/public/assets/utils/localStorage';
 import { KEY_PRODUCT_DATA } from '/public/assets/utils/localStorage';
-// import { KEY_PRODUCT_DATA } from '/public/assets/localStorage';
 
 const AddProductPage = () => {
 
@@ -22,11 +19,13 @@ const AddProductPage = () => {
     const [sellingPrice, setSellingPrice] = useState("")
     const [productQuantity, setProductQuantity] = useState("")
     const [productSelflife, setProductSelflife] = useState("")
+    const [productShelfLifeUnit, setProductShelfLifeUnit] = useState("")
     const [productCategory, setProductCategory] = useState("")
     const [productImage, setProductImage] = useState(null)
     const [submittedData, setSubmittedData] = useState([])
     const [isShowPreviewModal, setIsShowPreviewModal] = useState(false)
     const [isFormValid, setIsFormValid] = useState(false);
+    const [productQtyUnit, setProductQtyUnit] = useState("")
 
 
 
@@ -47,22 +46,27 @@ const AddProductPage = () => {
     const handleDropdownChange = (e) => {
         setProductCategory(e.target.value)
     }
-    console.log("productCategory", productCategory);
+    const handleDropdownUnit = (e) => {
+        setProductQtyUnit(e.target.value)
+    }
+    const handleShelfUnit = (e) => {
+        setProductShelfLifeUnit(e.target.value)
+    }
+    console.log("productShelfLifeUnit", productShelfLifeUnit);
     // console.log(validateForm());
-    console.log("isShowPreviewModal",isShowPreviewModal);
+    console.log("isShowPreviewModal", isShowPreviewModal);
     const onPreview = (e) => {
         e.preventDefault();
         const isValid = validateForm();
-        // setIsFormValid(isValid);
         setIsShowPreviewModal(isValid);
-        console.log("isValid",isValid);
-        
-    if (isValid) {
-    } else {
-        toast.error("Please fill in all required fields.", {
-            autoClose: 3000,
-        });
-    }
+        console.log("isValid", isValid);
+
+        if (isValid) {
+        } else {
+            toast.error("Please fill in all required fields.", {
+                autoClose: 3000,
+            });
+        }
 
     };
 
@@ -80,9 +84,11 @@ const AddProductPage = () => {
             pSellingPrice: sellingPrice,
             pQuantity: productQuantity,
             pSelflife: productSelflife,
+            pShelfUnit: productShelfLifeUnit,
             pAvailable: productAvailable,
             pCategory: productCategory,
             pImage: productImage,
+            pQtyUnit: productQtyUnit,
         }
         setIsShowPreviewModal(false)
         setSubmittedData([...submittedData, productDataInfo])
@@ -94,9 +100,11 @@ const AddProductPage = () => {
         setProductSelflife("")
         setSellingPrice("")
         setProductQuantity("")
+        setProductShelfLifeUnit("")
         setProductCategory("")
         setProductAvailable(false)
         setProductImage("")
+        setProductQtyUnit("")
         localStorage.setItem(KEY_PRODUCT_DATA, JSON.stringify([...submittedData, productDataInfo]))
         toast.success("Product Added successfully", {
             autoClose: 3000,
@@ -185,21 +193,32 @@ const AddProductPage = () => {
                                     onChange={(e) => setSellingPrice(e.target.value)}
                                 />
                             </div>
-                        </div>
-                        <div className='d-flex '>
                             <div>
-                                <label > Product Quantity:</label>
+                                <label >Shelf Life Unit</label>
+                                <select className='form-control rounded' value={productShelfLifeUnit} onChange={handleShelfUnit}>
+                                    <option value="">Unit..</option>
+                                    <option value="Day">Day</option>
+                                    <option value="Week">Week</option>
+                                    <option value="Month">Month</option>
+                                    <option value="Year">Year</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div className='d-flex  justify-content-between'>
+                            <div  >
+                                <label >Product ShelfLife:</label>
                                 <input
-                                    required
-                                    className='form-control w-50 num-text'
-                                    type="number"
-                                    id="productQuantity"
-                                    value={productQuantity}
-                                    onChange={(e) => setProductQuantity(e.target.value)}
+                                    className='form-control'
+                                    type="text"
+                                    id="productSelflife"
+                                    value={productSelflife}
+                                    onChange={(e) => setProductSelflife(e.target.value)}
                                 />
                             </div>
-                            <div className=''>
-                                <label>
+                            <div className='' >
+                                <label >
                                     Select Category:
 
                                 </label>
@@ -215,7 +234,7 @@ const AddProductPage = () => {
                                     <option value="IceCream">IceCream</option>
                                 </select>
                             </div>
-                            <div className='mx-5'>
+                            <div className='mx-5 d-flex flex-column'>
                                 <label >Product Availability:</label>
                                 <input
 
@@ -227,6 +246,34 @@ const AddProductPage = () => {
                                 />
                             </div>
                         </div>
+                        <div className='d-flex'>
+
+                            <div className=''>
+                                <label > Product Quantity:</label>
+                                <input
+                                    required
+                                    className='form-control w-50 num-text'
+                                    type="number"
+                                    id="productQuantity"
+                                    value={productQuantity}
+                                    onChange={(e) => setProductQuantity(e.target.value)}
+                                />
+                            </div>
+                            <div className='' >
+                                <label >
+                                    Select Unit:
+
+                                </label>
+                                <select className='form-control rounded' value={productQtyUnit} onChange={handleDropdownUnit}>
+                                    <option value="">Unit..</option>
+                                    <option value="ml">ml</option>
+                                    <option value="gm">gm</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+
                         <div>
                             <label >Product Details:</label>
                             <textarea
@@ -239,24 +286,15 @@ const AddProductPage = () => {
                             />
                         </div>
 
-                        <div>
-                            <label >Product ShelfLife:</label>
-                            <input
-                                className='form-control'
-                                type="text"
-                                id="productSelflife"
-                                value={productSelflife}
-                                onChange={(e) => setProductSelflife(e.target.value)}
-                            />
-                        </div>
-                        <div>
-                            <label
-                                className='custom-file-label'
 
-                            >Product Image </label>
-                            <input
+                        <div className=''>
+                            <label
+
+                            >Product Image: </label>
+                            <div className='d-flex gap-4'> <input
+
                                 required
-                                className='custom-file-input'
+                                className=' w-50 form-control'
                                 // type="file"
                                 // accept="image/*"
                                 value={productImage}
@@ -265,8 +303,8 @@ const AddProductPage = () => {
 
                                 onChange={(e) => setProductImage(e.target.value)}
                             />
-                            <img className='p-2 rounded' width={50} src={productImage} alt="" />
-
+                                <img className=' ' width={50} src={productImage} alt="image" />
+                            </div>
                         </div>
                         <button className='btn btn-primary w-100 '
                             data-bs-toggle="modal"
@@ -283,7 +321,7 @@ const AddProductPage = () => {
                           /> */}
 
                         {/* -------------------------modal-----u----------------------- */}
-                        <div class="modal fade text-dark" id={isShowPreviewModal?"staticBackdrop":""} data-bs-backdrop="static" data-bs-keyboard={false} tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="false">
+                        <div class="modal fade text-dark" id={isShowPreviewModal ? "staticBackdrop" : ""} data-bs-backdrop="static" data-bs-keyboard={false} tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="false">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -310,7 +348,7 @@ const AddProductPage = () => {
                                         </dl>
                                         <dl className='d-flex gap-5'>
                                             <dt>Product Quantity:</dt>
-                                            <dd>{productQuantity}</dd>
+                                            <dd>{productQuantity} {productQtyUnit}</dd>
                                         </dl>
                                         <dl className='d-flex gap-5'>
                                             <dt>Stock:</dt>

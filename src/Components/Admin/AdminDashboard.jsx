@@ -138,9 +138,9 @@ const AdminDashboard = () => {
 
                     <th className='text-center' scope="col">S.No</th>
 
-                    <th className='text-center' scope="col">Product Image</th>
-                    <th className='text-center' scope="col">Product Name</th>
-                    <th className='text-center' scope="col">Product Price</th>
+                    <th className='text-center' scope="col"> Image</th>
+                    <th className='text-center' scope="col"> Name</th>
+                    <th className='text-center' scope="col"> Price</th>
                     <th className='text-center' scope="col">Selling Price</th>
                     <th className='text-center' scope="col">Quantity</th>
                     <th className='text-center' scope="col">Categoty</th>
@@ -156,16 +156,16 @@ const AdminDashboard = () => {
                       <tr key={index}>
 
                         <th className='text-center'>{index + 1}</th>
-                        <th className='text-center' scope="row">
+                        <td className='text-center' scope="row">
                           <img src={product.pImage} width={40} height={40} className='rounded-circle' alt="img" />
-                        </th>
-                        <th className='text-center'>{product.pName}</th>
+                        </td>
+                        <td className='text-center'>{product.pName}</td>
                         <td className='text-center'>{product.pPrice}</td>
                         <td className='text-center'>{product.pSellingPrice}</td>
-                        <td className='text-center'>{product.pQuantity}</td>
+                        <td className='text-center'>{product.pQuantity} {product.pQtyUnit}</td>
                         <td className='text-center'>{product.pCategory}</td>
                         <td className='text-center'>{product.pAvailable ? "InStock" : "Out of Stock"}</td>
-                        <td className='text-center'>{product.pSelflife}</td>
+                        <td className='text-center'>{product.pSelflife} {product.pShelfUnit}</td>
                         <td className='text-center  '>
                           <Link className="  " index={index} to={`/updateproduct/${index}`}>
                             <i className="bi bi-pencil-square "></i>

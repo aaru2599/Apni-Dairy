@@ -73,11 +73,12 @@ const Header = () => {
           </div>
           <div >
             <LinkTag to="/">Home</LinkTag>
-            <LinkTag to="/aboutus">About Us</LinkTag>
+            {/* <LinkTag to="/aboutus">About Us</LinkTag> */}
             <LinkTag to="/products">Products</LinkTag>
             {/* <LinkTag to="/shop">Shop</LinkTag> */}
             <LinkTag to="/admin">Admin</LinkTag>
             <LinkTag to="/cart" className='bi bi-cart  position-relative' >{cartList.data.length > 0 && <span className='position-absolute top-0 start-100 translate-middle badge fs-6 rounded-pill bg-success'>{cartList.data.length}</span>}</LinkTag>
+            <LinkTag>Login</LinkTag>
           </div>
         </div>
 
