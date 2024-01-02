@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { addToCart } from './Cart/CartSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import ShimmerEffect from '../../Components/Loader/ShimmerEffect';
-
+import "./productLayout.css"
 const ProductsLayout = () => {
   const [searchedProduct, setSearchedProduct] = useState([])
   const [inputSearched, setInputSearched] = useState("")
@@ -20,13 +20,13 @@ const ProductsLayout = () => {
     console.log("e.target.value", product);
     navigate(`/product-details/${product.pId}`);
   };
-const handleFilterProductsCategory=(e)=>{
-  const filterProduct=e.target.value
-  const filteredProductcategory = products.data.filter((product) =>
-  product.pCategory && product.pCategory.toLowerCase().includes(filterProduct.toLowerCase())
-);
-setSearchedProduct(filteredProductcategory)
-}
+  const handleFilterProductsCategory = (e) => {
+    const filterProduct = e.target.value
+    const filteredProductcategory = products.data.filter((product) =>
+      product.pCategory && product.pCategory.toLowerCase().includes(filterProduct.toLowerCase())
+    );
+    setSearchedProduct(filteredProductcategory)
+  }
   const onSearch = (e) => {
     setInputSearched(e.target.value);
     updateSearchedProduct(e.target.value);
@@ -34,6 +34,7 @@ setSearchedProduct(filteredProductcategory)
   const onSearchBtnClick = () => {
     updateSearchedProduct(inputSearched);
   };
+
   // setSearchedProduct(products.data)
   const updateSearchedProduct = (searchText) => {
     if (searchText.trim() === '') {
@@ -110,29 +111,60 @@ setSearchedProduct(filteredProductcategory)
       <div className='row row-cols-1 row-cols-md-5 g-3 '>
         {searchedProduct &&
           searchedProduct.map((product, index) => (
-            <div key={product.id} className='col'>
-              <div className="card bg-body-emphasis" >
-                <Link
-                  onClick={(e) => imgClick(e, product)}
-                  to={`/product-details/${product.pId}`}
-                  state={{ product }}
-                  className='p-3 border-bottom '
-                >
-                  <img src={product?.pImage} width={500} alt="img" className="card-img-top object-fit-contain  rounded" height={150} />
+            // <div key={product.id} className='col'>
+            //   <div className="card bg-body-emphasis" >
+            //     <Link 
+            //       onClick={(e) => imgClick(e, product)}
+            //       to={`/product-details/${product.pId}`}
+            //       state={{ product }}
+            //       className='p-3 border-bottom '
+            //     >
+            //       <img src={product?.pImage} width={200} alt="img" className="border  object-fit-cover  " height={250} />
+            //     </Link>
+
+            //     <div className="card-body">
+            //       <h6 className="card-title  text-truncate">
+            //         {product.pName}
+            //       </h6>
+            //       <div className=''>
+            //         <div className='d-flex justify-content-between'><div>&#8377; {product.pPrice}</div><div>{product.pQuantity} {product.pQtyUnit}</div></div>
+            //         <div className=''>
+            //           <button onClick={() => onAddToCart(product)} className='text center btn btn-sm btn-secondary text-center'>Add To Cart</button>
+
+            //         </div>
+            //       </div>
+            //     </div>
+            //   </div>
+            // </div>
+            <div className='d-flex  flex-column product-container' style={{ maxWidth: "250px" }}>
+              <Link className='text-center'
+                onClick={(e) => imgClick(e, product)}
+                      to={`/product-details/${product.pId}`}
+                      state={{ product }}
+                    
+              >
+                <img src={product.pImage} alt="" className=' object-fit-contain border' width={230} height={250} />
                 </Link>
+                <button onClick={() => onAddToCart(product)} className='addToCartBtn border-0 p-2 text-info-emphasis  fw-bold text-center' style={{width:"230px", height:"30px"}}>ADD TO CART <i className='bi bi-cart-fill'></i></button>
+              <div className='text-center '>
+                <div className='text-warning-emphasis'>{product.pName}</div>
+                <div className='my-1'>
+                  <div className=' text-truncate ' style={{ fontSize: "15px" }}>{product.pDetails}</div>
+                  <div className=' text-center ' style={{ fontSize: "14px" }}>
+                    <span className='fw-bold mx-1 text-success'> &#8377;{product.pSellingPrice}</span>
+                    <span className='text-decoration-line-through mx-1' style={{ fontSize: "13px" }}>&#8377;{product.pPrice}</span>
 
-                <div className="card-body">
-                  <h6 className="card-title  text-truncate">
-                    {product.pName}
-                  </h6>
-                  <div className=''>
-                    <div className='d-flex justify-content-between'><div>&#8377; {product.pPrice}</div><div>{product.pQuantity} {product.pQtyUnit}</div></div>
-                    <div className=''>
-                      <button onClick={() => onAddToCart(product)} className='text center btn btn-sm btn-secondary text-center'>Add To Cart</button>
-
-                    </div>
+                    <span className='text-warning-emphasis' style={{ fontSize: "13px" }}>({(((product.pPrice - product.pSellingPrice) / product.pPrice) * 100).toFixed(2)}% Off)</span>
                   </div>
+
                 </div>
+                <div className='' style={{fontSize:"14px"}}>
+                  {/* <div>{product.pQuantity} {product.pQtyUnit}</div> */}
+                  <div>
+                  Best before: <span>{product.pSelflife}</span> <span>{product.pShelfUnit}</span>
+                  </div>
+                  </div>
+
               </div>
             </div>
           ))}

@@ -64,7 +64,7 @@ const HomeImageSlider = () => {
 
         style={{
           zIndex: 100,
-          fontFamily: 'Playfair Display',
+         
           color: "#ffffff",
         }}>
 

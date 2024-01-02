@@ -28,7 +28,7 @@ const AboutProduct = () => {
                             <div className='bg-white rounded' key={index}>
 
                                 <div><img className='p-1' src={product.pImage} alt="" /></div>
-                                <h3 style={{ fontFamily: "Playfair Display Sans-serif", fontWeight: "bold" }}>{product.pName}</h3>
+                                <h3 style={{  fontWeight: "bold" }}>{product.pName}</h3>
                             </div>
                         )
 

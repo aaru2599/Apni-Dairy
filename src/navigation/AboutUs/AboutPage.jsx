@@ -23,8 +23,8 @@ const AboutPage = () => {
                             </div>
                         </div>
                         <div className='w-75'>
-                            <div style={{ fontFamily: "sans-serif" }}>Volutpat sit amet leo id, efficitur mattis turpis. Dunec bibendm est. Proin ligula nisl, mattiss ollicitudin and magna et, rhon ven en ipsum. Maecenas in tempor ipsum.</div>
-                            <div style={{ fontFamily: "sans-serif", marginTop: "10px" }}>Volutpat sit amet leo id, efficitur mattis turpis. Dunec bibendm est. Proin ligula nisl, mattiss ollicitudin and magna et, rhon ven en ipsum. Maecenas in tempor ipsum.</div>
+                            <div >Volutpat sit amet leo id, efficitur mattis turpis. Dunec bibendm est. Proin ligula nisl, mattiss ollicitudin and magna et, rhon ven en ipsum. Maecenas in tempor ipsum.</div>
+                            <div style={{ marginTop: "10px" }}>Volutpat sit amet leo id, efficitur mattis turpis. Dunec bibendm est. Proin ligula nisl, mattiss ollicitudin and magna et, rhon ven en ipsum. Maecenas in tempor ipsum.</div>
                         </div>
                     </section>
                     <section style={{ position: "relative" }}>

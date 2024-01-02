@@ -1,0 +1,19 @@
+/* productLayout.css */
+.product-container {
+    position: relative;
+    max-width: 250px;
+  }
+  
+  .addToCartBtn {
+    position: absolute;
+    bottom: 98px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .product-container:hover .addToCartBtn {
+    opacity: 1;
+  }
+  
