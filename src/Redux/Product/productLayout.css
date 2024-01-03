@@ -1,19 +1,30 @@
-/* productLayout.css */
 .product-container {
-    position: relative;
-    max-width: 250px;
-  }
-  
-  .addToCartBtn {
-    position: absolute;
-    bottom: 98px;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .product-container:hover .addToCartBtn {
-    opacity: 1;
-  }
-  
+  position: relative;
+  max-width: 250px;
+}
+
+.addToCartBtn {
+  position: absolute;
+  bottom: 0;
+  left: 35px;
+  /* left: 50%; */
+  /* transform: translateX(-50%); */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  /* background-color:transparent; */
+  /* background-color: red; */
+  border-radius: 10px;
+  color: #fff;
+  border: none;
+  /* padding: 5px 10px; */
+  cursor: pointer;
+}
+
+.product-container:hover .addToCartBtn {
+  opacity: 1;
+}
+
+/* .btn_div{
+  background-color: aquamarine !important;
+  padding: 2px;
+} */

@@ -77,11 +77,11 @@ const ProductsLayout = () => {
     <div className='m-2 '>
 
       <div className="d-flex justify-content-center w-100 p-2">
-        <div className='d-flex gap-2 justify-content-between border'>
+        <div className='d-flex gap-2 justify-content-between border border-2 border-warning-subtle px-2'>
 
           <input type="text"
             className='border-0 focus-ring'
-            placeholder='Find Product...'
+            placeholder='Search Products...'
             onChange={onSearch}
           />
           <div>
@@ -136,34 +136,40 @@ const ProductsLayout = () => {
             //     </div>
             //   </div>
             // </div>
-            <div className='d-flex  flex-column product-container' style={{ maxWidth: "250px" }}>
-              <Link className='text-center'
-                onClick={(e) => imgClick(e, product)}
-                      to={`/product-details/${product.pId}`}
-                      state={{ product }}
-                    
-              >
-                <img src={product.pImage} alt="" className=' object-fit-contain border' width={230} height={250} />
+            <div className='d-flex product-container flex-column ' style={{ maxWidth: "260px" }}>
+              <div className=' position-relative' >
+                <Link className=''
+                  onClick={(e) => imgClick(e, product)}
+                  to={`/product-details/${product.pId}`}
+                  state={{ product }}
+
+                >
+                  <img src={product.pImage} alt="" className='img-class object-fit-contain border' width={230} height={250} />
                 </Link>
-                <button onClick={() => onAddToCart(product)} className='addToCartBtn border-0 p-2 text-info-emphasis  fw-bold text-center' style={{width:"230px", height:"30px"}}>ADD TO CART <i className='bi bi-cart-fill'></i></button>
+                <div className='btn_div d-flex justify-content-center'>
+                  <button onClick={() => onAddToCart(product)} className='addToCartBtn w-75    border-0  text-info-emphasis  fw-bold text-center' style={{ width: "230px", height: "30px" }}>ADD TO CART <i className='bi bi-cart-fill'></i></button>
+
+                </div>
+
+              </div>
               <div className='text-center '>
-                <div className='text-warning-emphasis'>{product.pName}</div>
+                <div className='text-warning-emphasis fw-bold pt-2'>{product.pName}</div>
                 <div className='my-1'>
-                  <div className=' text-truncate ' style={{ fontSize: "15px" }}>{product.pDetails}</div>
+                  {/* <div className=' text-truncate ' style={{ fontSize: "15px" }}>{product.pDetails}</div> */}
                   <div className=' text-center ' style={{ fontSize: "14px" }}>
-                    <span className='fw-bold mx-1 text-success'> &#8377;{product.pSellingPrice}</span>
+                    <span className='fw-bold mx-1 text-success' style={{ fontSize: "14px" }}> &#8377;{product.pSellingPrice}</span>
                     <span className='text-decoration-line-through mx-1' style={{ fontSize: "13px" }}>&#8377;{product.pPrice}</span>
 
                     <span className='text-warning-emphasis' style={{ fontSize: "13px" }}>({(((product.pPrice - product.pSellingPrice) / product.pPrice) * 100).toFixed(2)}% Off)</span>
                   </div>
 
                 </div>
-                <div className='' style={{fontSize:"14px"}}>
+                <div className='' style={{ fontSize: "14px" }}>
                   {/* <div>{product.pQuantity} {product.pQtyUnit}</div> */}
-                  <div>
-                  Best before: <span>{product.pSelflife}</span> <span>{product.pShelfUnit}</span>
+                  <div className='text-body-secondary'>
+                    Best before: <span>{product.pSelflife}</span> <span>{product.pShelfUnit}</span>
                   </div>
-                  </div>
+                </div>
 
               </div>
             </div>
