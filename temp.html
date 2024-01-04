@@ -1,27 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .div-main{
-            width: 400px;
-            height: 400px;
-            background-color: yellow;
-            border-radius: 100%;
-            display: flex;
-            justify-content: center ;
-            align-items: center;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Image with Red Background</title>
+  <style>
+    body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: pink; /* Set background color to red */
+}
+
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.red-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+   /* background-color: blue; /* Set background color to red */
+  mix-blend-mode: multiply; /* Use multiply blending mode to overlay the color */
+}
+
+  </style>
 </head>
 <body>
-    
-    <div>
-        <div class="div-main">
-            <img height="290" width="290" src="public/assets/cow-head.png" alt="">
-        </div>
-    </div>
+  <div class="image-container">
+    <img src="public/assets/Products/curd4.png" alt="Your Image">
+    <div class="red-overlay"></div>
+  </div>
 </body>
 </html>

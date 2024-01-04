@@ -138,8 +138,8 @@ const CartLayout = () => {
                                                     {
                                                         cartData.map((item) => {
                                                             return (
-                                                                <div className='d-flex justify-content-between' key={item.pId}>
-                                                                    <div><span>{item.count}*</span><span>{item.pName}</span></div>
+                                                                <div className='d-flex justify-content-between ' key={item.pId}>
+                                                                    <div className='text-truncate w-80'><span className='text-truncate '>{item.count}*</span><span className='w-50 text-truncate'>{item.pName}</span></div>
                                                                     <div>&#8377; {item.pPrice * item.count}</div>
                                                                 </div>
                                                             )

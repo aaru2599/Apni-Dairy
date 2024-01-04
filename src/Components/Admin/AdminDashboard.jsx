@@ -77,7 +77,7 @@ const AdminDashboard = () => {
       <Header />
       <div>
 
-        <img src="/assets/product-banner.jpg" height={150} style={{ width: "-webkit-fill-available" }} alt="" />
+        <img src="/assets/product-banner.jpg" height={200} style={{ width: "-webkit-fill-available" }} alt="" />
       </div>
       <div className='d-flex align-items-center'>
         <div className='d-flex gap-3'>

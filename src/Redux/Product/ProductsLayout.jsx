@@ -136,15 +136,15 @@ const ProductsLayout = () => {
             //     </div>
             //   </div>
             // </div>
-            <div className='d-flex product-container flex-column ' style={{ maxWidth: "260px" }}>
+            <div className='d-flex product-container flex-column ' style={{ maxWidth: "250px" }}>
               <div className=' position-relative' >
                 <Link className=''
                   onClick={(e) => imgClick(e, product)}
-                  to={`/product-details/${product.pId}`}
+                  to={`/product-details/${product.pName}`}
                   state={{ product }}
 
                 >
-                  <img src={product.pImage} alt="" className='img-class object-fit-contain border' width={230} height={250} />
+                  <img src={product.pImage} alt="" className='img-class bg-primary object-fit-contain border' style={{background:"url(https://www.w3schools.com/cssref/paper.gif)"}} width={220} height={250} />
                 </Link>
                 <div className='btn_div d-flex justify-content-center'>
                   <button onClick={() => onAddToCart(product)} className='addToCartBtn w-75    border-0  text-info-emphasis  fw-bold text-center' style={{ width: "230px", height: "30px" }}>ADD TO CART <i className='bi bi-cart-fill'></i></button>
