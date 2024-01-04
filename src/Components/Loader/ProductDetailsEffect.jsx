@@ -1,20 +1,21 @@
 import React from 'react'
-import { ShimmerPostItem } from 'react-shimmer-effects'
+import { ShimmerContentBlock, ShimmerPostItem } from 'react-shimmer-effects'
 
 const ProductDetailsEffect = () => {
-  
+
   return (
-    <div style={{width:"500px"}}>
-         <ShimmerPostItem
-          card
-          title
-          cta
-          imageType="thumbnail"
-          
-          imageWidth={80}
-          imageHeight={80}
-          contentCenter
-        />
+    <div style={{ width: "900px", height:"100vh"}} >
+      <ShimmerContentBlock
+    
+      
+        title
+        text
+        cta 
+        
+        thumbnailWidth={450}
+        thumbnailHeight={570} />
+
+
     </div>
   )
 }

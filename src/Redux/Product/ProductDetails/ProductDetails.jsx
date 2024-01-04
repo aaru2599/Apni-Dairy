@@ -2,15 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import ProductDetailsEffect from '../../../Components/Loader/ProductDetailsEffect';
 import Header from '../../../features/Header/Header';
+import { useDispatch } from 'react-redux';
+import { addToCart, updateCartQuantity } from '../Cart/CartSlice';
+import { ToastContainer, toast } from 'react-toastify';
 
 const ProductDetails = () => {
   const location = useLocation();
   const { state } = location;
   const selectedProduct = state?.product;
+  const dispatcher=useDispatch()
 
   // State to control whether to display the product details
   const [showDetails, setShowDetails] = useState(false);
   // State to control loading state
+  const [quantity, setQuantity] = useState(1); 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -32,14 +37,23 @@ const ProductDetails = () => {
     fetchData();
   }, []);
 
-  // console.log("selectedProduct", selectedProduct);
+  // const onClickProductDec=()=>{
+  //   dispatcher(updateCartQuantity({selectedProduct, quantity:selectedProduct.count - 1 }))
+  // }
+  const on_AddToCart=(selectedProduct)=>{
+    toast.success(`${selectedProduct.pName} Added Successfully`,{
+      autoClose:1000
+    } )
+    dispatcher(addToCart(selectedProduct))
+  }
+  console.log("selectedProduct", selectedProduct);
   return (
-    <div className='overflow-hidden bg-white'>
+    <div className=' bg-white'>
       <div>
         <Header />
       </div>
       <div>
-        <img src="/assets/product-banner.jpg" height={200} style={{ width: "-webkit-fill-available" }} alt="" />
+        <img src="/assets/product-banner.jpg" height={150} style={{ width: "-webkit-fill-available" }} alt="" />
 
       </div >
       <nav className='px-4 py-2 d-flex align-items-center gap-5' style={{ '--bs-breadcrumb-divider': 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'8\' height=\'8\'%3E%3Cpath d=\'M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z\' fill=\'%236c757d\'/%3E%3C/svg%3E")' }} aria-label="breadcrumb">
@@ -50,17 +64,17 @@ const ProductDetails = () => {
         </ol>
 
         {/* <div className='d-flex justify-content-center pt-3'> */}
-          {/* <Link className='btn btn-secondary' to="/products">Back</Link> */}
+        {/* <Link className='btn btn-secondary' to="/products">Back</Link> */}
         {/* </div> */}
       </nav>
       {loading ? (
-        <div style={{ height: "100vh" }} className='d-flex justify-content-center align-items-center'><ProductDetailsEffect /></div>
+        <div  className='px-4 '><ProductDetailsEffect /></div>
       ) : (
         showDetails && (
           <div className='d-flex px-4 gap-5 '>
 
-            <div style={{ maxWidth: "" }}>
-              <img src={selectedProduct.pImage} className=' rounded object-fit-contain' width={450} height={450} alt="productImage" style={{ backgroundColor: "#e9d9c0" }} />
+            <div >
+              <img src={selectedProduct.pImage} className=' rounded object-fit-contain' width={450} height={450} alt="productImage" style={{ background: "url(https://www.w3schools.com/cssref/paper.gif)" }} />
             </div>
             <div>
               <table className='table '>
@@ -87,16 +101,16 @@ const ProductDetails = () => {
                         <button className='btn-sm btn btn-outline-secondary'>1000{selectedProduct.pQtyUnit}</button>
                       </div>
                       <div class="p-3 input-group input-spinner">
-                        <input type="button" value="-" class="btn btn-sm btn-outline-secondary" data-field="quantity" />
-                        <input style={{ width: "25px" }} type="number" step="1" max="10" value="1" name="quantity" class="btn   btn-sm btn-outline-  outline-0 border-secondary" />
-                        <input type="button" value="+" class=" button-plus btn btn-sm btn-outline-secondary" data-field="quantity" />
+                        <button type="button"  onClick={() => onClickProductDec(selectedProduct.pId)} class="btn btn-sm btn-outline-secondary" data-field="quantity" >-</button>
+                        <input style={{ width: "25px" }} type="number" value={quantity}  max="10"  name="quantity" class="btn   btn-sm btn-outline-  outline-0 border-secondary" />
+                        <button type="button" class=" button-plus btn btn-sm btn-outline-secondary" data-field="quantity" >+</button>
                       </div>
                       <div class="py-2 row justify-content-start g-2 align-items-center">
                         <div class="col-xxl-4 col-lg-4 col-md-5 col-5 d-grid">
 
-                          <button type="button" class="btn btn-success btn-sm">
-                            <i class="bi bi-bag"></i>
-                            Add to cart
+                          <button onClick={()=>on_AddToCart(selectedProduct)} type="button" class="d-flex gap-2 btn btn-success btn-sm">
+                            <div class="bi bi-bag"></div>
+                 <div >Add To Card</div>
                           </button>
                         </div>
                         <div class="col-md-4 col-4 ">
@@ -109,23 +123,23 @@ const ProductDetails = () => {
                   <tr>
                     <td>
                       <table class="table table-borderless mb-0">
-                        <tbody   style={{fontSize:"15px"}}>
-                        <tr>
-                          <td  className='text-secondary'>Product Code:</td>
-                          <td className='text-secondary'>{selectedProduct.pId.slice(0, 5).toUpperCase()}</td>
-                        </tr>
-                        <tr>
-                          <td className='text-secondary'>Availability: </td>
-                          <td className='text-secondary'>{selectedProduct.pAvailable ? "In Stock" : "Out Of Stock"}</td>
-                        </tr>
-                        <tr>
-                          <td className='text-secondary'> Category:</td>
-                          <td className='text-secondary'>{selectedProduct.pCategory}</td>
-                        </tr>
-                        <tr className=''>
-                          <td className='text-secondary'>Shipping:</td>
-                          <td className='text-secondary w-75'>01 day shipping. ( Free pickup today)</td>
-                        </tr>
+                        <tbody style={{ fontSize: "15px" }}>
+                          <tr>
+                            <td className='text-secondary'>Product Code:</td>
+                            <td className='text-secondary'>{selectedProduct.pId.slice(0, 5).toUpperCase()}</td>
+                          </tr>
+                          <tr>
+                            <td className='text-secondary'>Availability: </td>
+                            <td className='text-secondary'>{selectedProduct.pAvailable ? "In Stock" : "Out Of Stock"}</td>
+                          </tr>
+                          <tr>
+                            <td className='text-secondary'> Category:</td>
+                            <td className='text-secondary'>{selectedProduct.pCategory}</td>
+                          </tr>
+                          <tr className=''>
+                            <td className='text-secondary'>Shipping:</td>
+                            <td className='text-secondary w-75'>01 day shipping. ( Free pickup today)</td>
+                          </tr>
                         </tbody>
                       </table>
                     </td>
@@ -136,7 +150,7 @@ const ProductDetails = () => {
           </div>
         )
       )}
-
+<ToastContainer/>
 
     </div>
   );
