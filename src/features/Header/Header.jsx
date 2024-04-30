@@ -1,54 +1,69 @@
-import React from 'react'
-import { LinkTag, headerDiv } from './Header.Style';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import "../../Redux/Product/Cart/Cart.css"
+import { LinkTag } from "./Header.Style";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import "../../Redux/Product/Cart/Cart.css";
+import useIsMobile from "../../Components/IsMobile";
+import styled from "styled-components";
 
-const headerStyle = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center"
-}
-const svgDiv = {
+const navStyle = {
+  display: "block",
+};
 
-}
-const logoContainer = {
-  marginLeft: "100px",
-  // zIndex: "20"
-}
-const logoImage = {
-  width: "131px",
-  height: "65px",
+const responsiveNavStyle = {
+  display: "none",
+};
+
+const svgStyle = {
   position: "absolute",
-  top: "10px",
-  zIndex: "2"
-}
-const imgBackground = {
-  width: "220px",
-  height: "100px",
-  backgroundColor: "white",//#198754
-  position: "absolute",
+  left: "0",
+  top: "18",
+  width: "300px",
   zIndex: "1",
-  top: "0",
-  left: "60px",
-  borderRadius: "100%"
+};
+const responsiveSvgStyle = {
+  // width: "100%",
+  position: "absolute",
+  left: "0",
+  top: "10",
+  width: "100%",
+  zIndex: "1",
+};
 
-  // border:"2px solid black"
-}
+// console.log("IsMobile",useIsMobileOrTablet?"hello":"nhi hello");
 const Header = () => {
-  const cartList = useSelector((state) => state.myCart)
+  // console.log("hello");
+  const isMobileAndTab = useIsMobile();
+  console.log("isMobAndTab", isMobileAndTab);
+  const cartList = useSelector((state) => state.myCart);
   console.log("cartList", cartList);
   return (
-    <div className='main-div' >
-      <div className='p-3' style={{ position: "relative", top: "0", backgroundColor: "white" }}>
-        <div style={headerStyle}>
-          <div style={logoContainer}>
-            <Link to="/"><img style={logoImage} src="https://sktperfectdemo.com/themepack/dairy/wp-content/themes/dairy-farm/images/logo.png" alt="img" /></Link>
-            <div style={svgDiv}>
-              <div style={imgBackground}></div>
-              <svg style={{ position: "absolute", left: "0", top: "18", width: "300px", zIndex: "1" }} version="1.0" xmlns="http://www.w3.org/2000/svg" width="399.000000pt" height="130.000000pt" viewBox="0 0 399.000000 130.000000" preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,130.000000) scale(0.100000,-0.100000)" fill="white" stroke="none">
-                  <path d="M0 1231 l0 -69 37 -7 c21 -4 42 -10 48 -13 9 -6 14 -8 33 -11 4 0 22
+    <div className="main-div" style={{ position: "sticky", top: "0" }}>
+      <div
+        className="p-3"
+        style={{ position: "sticky", top: "0", backgroundColor: "white" }}
+      >
+        <MainHeader>
+          <LogoContainer>
+            <Link to="/">
+              <img src="/assets/logo.png" className="logo-image" alt="img" />
+            </Link>
+            <svg
+              className=""
+              style={isMobileAndTab ? responsiveSvgStyle : svgStyle}
+              version="1.0"
+              xmlns="http://www.w3.org/2000/svg"
+              width="399.000000pt"
+              height="130.000000pt"
+              viewBox="0 0 399.000000 130.000000"
+              preserveAspectRatio="xMidYMid meet"
+            >
+              <g
+                transform="translate(0.000000,130.000000) scale(0.100000,-0.100000)"
+                fill="white"
+                stroke="none"
+              >
+                <path
+                  d="M0 1231 l0 -69 37 -7 c21 -4 42 -10 48 -13 9 -6 14 -8 33 -11 4 0 22
 -14 39 -30 l32 -29 53 27 c96 47 208 27 272 -50 l27 -32 33 32 c18 18 40 34
 47 35 8 2 23 7 34 12 37 16 137 9 182 -14 51 -27 100 -85 114 -137 15 -52 5
 -262 -14 -335 -31 -112 -31 -137 -3 -165 31 -31 49 -32 77 -2 20 21 21 27 13
@@ -64,26 +79,72 @@ const Header = () => {
 -59 13 -78 25 -25 49 -27 77 -7 18 14 19 26 16 196 -2 138 1 195 12 241 48
 185 212 246 342 127 57 -52 79 -121 70 -212 -6 -53 -4 -64 14 -84 25 -27 32
 -27 55 -2 19 20 19 26 -1 191 -10 86 2 139 46 207 59 91 178 162 270 162 l40
-0 0 80 0 80 -1995 0 -1995 0 0 -69z"></path>
-                </g>
-              </svg>
+0 0 80 0 80 -1995 0 -1995 0 0 -69z"
+                ></path>
+              </g>
+            </svg>
 
+            <div>
+              {/* <div style={isMobileAndTab?responsiveImgBackground:imgBackground}></div> */}
             </div>
-
-          </div>
-          <div >
+          </LogoContainer>
+          <div style={isMobileAndTab ? responsiveNavStyle : navStyle}>
             <LinkTag to="/">Home</LinkTag>
             {/* <LinkTag to="/aboutus">About Us</LinkTag> */}
             <LinkTag to="/products">Products</LinkTag>
             {/* <LinkTag to="/shop">Shop</LinkTag> */}
             <LinkTag to="/admin">Admin</LinkTag>
-            <LinkTag to="/cart" className='bi bi-cart  position-relative' >{cartList.data.length > 0 && <span className='position-absolute top-0 start-100 translate-middle badge fs-6 rounded-pill bg-success'>{cartList.data.length}</span>}</LinkTag>
+            <LinkTag to="/cart" className="bi bi-cart  position-relative">
+              {cartList.data.length > 0 && (
+                <span className="position-absolute top-0 start-100 translate-middle badge fs-6 rounded-pill bg-success">
+                  {cartList.data.length}
+                </span>
+              )}
+            </LinkTag>
             <LinkTag>Login</LinkTag>
           </div>
-        </div>
-
+        </MainHeader>
       </div>
     </div>
-  )
-}
-export default Header
+  );
+};
+export default Header;
+
+const LogoContainer = styled.div`
+  margin-left: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .logo-image {
+      position: absolute;
+      objectfit: contain;
+      top: 50%;
+      left: 40%;
+      background-color: white;
+      width: 100px;
+      height: 50px;
+      z-index: 2;
+    }
+  }
+  .logo-image {
+    width: 100px;
+    height: 50px;
+    position: absolute;
+    objectfit: contain;
+    // top: 10px;
+    z-index: 2;
+  }
+`;
+const MainHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;

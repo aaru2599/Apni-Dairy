@@ -19,7 +19,6 @@ const ProductDetails = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate an asynchronous operation (e.g., fetching data from an API) with a timeout
     const fetchData = async () => {
       try {
         // Simulating an API call with a delay of 1000 milliseconds (1 second)
@@ -37,9 +36,7 @@ const ProductDetails = () => {
     fetchData();
   }, []);
 
-  // const onClickProductDec=()=>{
-  //   dispatcher(updateCartQuantity({selectedProduct, quantity:selectedProduct.count - 1 }))
-  // }
+  
   const on_AddToCart=(selectedProduct)=>{
     toast.success(`${selectedProduct.pName} Added Successfully`,{
       autoClose:1000

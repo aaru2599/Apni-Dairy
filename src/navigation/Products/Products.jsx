@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from '../../features/Header/Header';
-import AddedProductsToProductPage from '../../Components/Admin/AddedProducts/AddedProductsToProductPage';
 import ProductsLayout from '../../Redux/Product/ProductsLayout';
 
 const Products = () => {

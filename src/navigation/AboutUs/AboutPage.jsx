@@ -1,8 +1,7 @@
-import React from 'react'
 
 const AboutPage = () => {
     return (
-        <section style={{ display: "flex", marginTop: "100px"}}>
+        <section style={{ display: "flex", marginTop: "100px", }}>
             <div style={{ width: "50%", height: "90vh", }}>
 
                 <div>

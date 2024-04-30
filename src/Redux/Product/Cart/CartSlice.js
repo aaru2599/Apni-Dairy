@@ -21,6 +21,7 @@ const cartSlice = createSlice({
             return state
 
         },
+      
         removeFromCart: (state, action) => {
             const productRemove = action.payload
             const productIndex = state.data.findIndex((item) => item.pId === productRemove.pId)

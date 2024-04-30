@@ -12,9 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
   <RouteLayout/>
 </Provider>
-  
-
-)
+  )
 
 
 {/* <Link to={`/addproduct?restaurant=${restaurant.name}`}

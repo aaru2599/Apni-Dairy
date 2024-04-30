@@ -1,8 +1,6 @@
-import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./ImageSlider.css"; // Create a CSS file for your styles
-import { Fade } from "@mui/material";
 import { FastForward } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
@@ -25,8 +23,8 @@ const HomeImageSlider = () => {
         ))}
       </Carousel>
       <div >
-        <svg className="position-absolute" style={{ bottom: "0px", filter: " contrast(0.65)" }} version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400.000000 26.000000" preserveAspectRatio="xMidYMid meet">
-          <g transform="translate(0.000000,26.000000) scale(0.100000,-0.100000)" fill="#ffffff" stroke="none">
+        <svg className="position-absolute" style={{ bottom: "0px", filter: " contrast(100)" }} version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400.000000 26.000000" preserveAspectRatio="xMidYMid meet">
+          <g transform="translate(0.000000,26.000000) scale(0.100000,-0.100000)" fill="#fff" stroke="none">
             <path d="M3740 249 c-14 -6 -38 -12 -55 -14 -206 -26 -243 -34 -300 -64 -33
 -17 -81 -36 -107 -41 -27 -6 -69 -15 -95 -20 -69 -16 -223 -21 -223 -8 0 7
 -15 8 -42 3 -24 -5 -60 -7 -82 -6 -51 2 -98 -14 -126 -44 -23 -24 -28 -25

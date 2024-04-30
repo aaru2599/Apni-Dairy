@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import {  useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProduct } from './products.slice';
-import { getproducts } from './Products.saga';
 import { Link, useNavigate } from 'react-router-dom';
 import { addToCart } from './Cart/CartSlice';
 import { ToastContainer, toast } from 'react-toastify';
@@ -16,10 +15,10 @@ const ProductsLayout = () => {
   const dispatcher = useDispatch();
   const navigate = useNavigate();
 
-  const imgClick = (product) => {
-    console.log("e.target.value", product);
-    navigate(`/product-details/${product.pId}`);
-  };
+  // const imgClick = (product) => {
+  //   console.log("e.target.value", product);
+  //   navigate(`/product-details/${product.pId}`);
+  // };
   const handleFilterProductsCategory = (e) => {
     const filterProduct = e.target.value
     const filteredProductcategory = products.data.filter((product) =>
@@ -77,7 +76,7 @@ const ProductsLayout = () => {
     <div className='m-2 '>
 
       <div className="d-flex justify-content-center w-100 p-2">
-        <div className='d-flex gap-2 justify-content-between border border-2 border-warning-subtle px-2'>
+        <div className='d-flex gap-2 justify-content-between  border-2 border-warning-subtle px-2'>
 
           <input type="text"
             className='border-0 focus-ring'
@@ -111,35 +110,11 @@ const ProductsLayout = () => {
       <div className='row row-cols-1 row-cols-md-5 g-3 '>
         {searchedProduct &&
           searchedProduct.map((product, index) => (
-            // <div key={product.id} className='col'>
-            //   <div className="card bg-body-emphasis" >
-            //     <Link 
-            //       onClick={(e) => imgClick(e, product)}
-            //       to={`/product-details/${product.pId}`}
-            //       state={{ product }}
-            //       className='p-3 border-bottom '
-            //     >
-            //       <img src={product?.pImage} width={200} alt="img" className="border  object-fit-cover  " height={250} />
-            //     </Link>
-
-            //     <div className="card-body">
-            //       <h6 className="card-title  text-truncate">
-            //         {product.pName}
-            //       </h6>
-            //       <div className=''>
-            //         <div className='d-flex justify-content-between'><div>&#8377; {product.pPrice}</div><div>{product.pQuantity} {product.pQtyUnit}</div></div>
-            //         <div className=''>
-            //           <button onClick={() => onAddToCart(product)} className='text center btn btn-sm btn-secondary text-center'>Add To Cart</button>
-
-            //         </div>
-            //       </div>
-            //     </div>
-            //   </div>
-            // </div>
-            <div className='d-flex product-container flex-column ' style={{ maxWidth: "250px" }}>
+            
+            <div  key={index} className='d-flex product-container flex-column ' style={{ maxWidth: "250px" }}>
               <div className=' position-relative' >
                 <Link className=''
-                  onClick={(e) => imgClick(e, product)}
+                  // onClick={() => imgClick( product)}
                   to={`/product-details/${product.pName}`}
                   state={{ product }}
 

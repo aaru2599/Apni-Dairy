@@ -2,7 +2,13 @@ import React from 'react'
 import "./Footer.css"
 import { Link } from 'react-router-dom'
 const Footer = () => {
+const handleClick=()=>{
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
 
+    })
+}
     return (
         <div className='position-relative'>
             <div>
@@ -62,10 +68,10 @@ const Footer = () => {
                         <h4> {`Quick Links`.toUpperCase()}</h4>
                         <div>
                             <ul className='list-unstyled serviceStyle'>
-                                <li><Link to="/">Home</Link></li>
-                                <li><Link to="/aboutus">AboutUs</Link></li>
-                                <li><Link to="/products">Products</Link></li>
-                                <li><Link to="/products">Contact Us</Link></li>
+                                <li><Link onClick={handleClick} to="/">Home</Link></li>
+                                <li><Link onClick={handleClick} to="/aboutus">AboutUs</Link></li>
+                                <li><Link onClick={handleClick} to="/products">Products</Link></li>
+                                <li><Link onClick={handleClick} to="/products">Contact Us</Link></li>
 
                             </ul>
                         </div>
