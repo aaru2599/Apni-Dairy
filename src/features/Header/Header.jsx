@@ -44,6 +44,22 @@ const Header = () => {
       >
         <MainHeader>
           <LogoContainer>
+            <button
+              className="btn position-absolute d-block d-md-none  "
+              style={{
+                top: "10px",
+                right: "20px",
+                position: "absolute",
+                zIndex: "10",
+              }}
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasWithBackdrop"
+              aria-controls="offcanvasWithBackdrop"
+            >
+              <i className="bi bi-chevron-double-left"></i>
+            </button>
+
             <Link to="/">
               <img src="/assets/logo.png" className="logo-image" alt="img" />
             </Link>
@@ -86,6 +102,39 @@ const Header = () => {
 
             <div>
               {/* <div style={isMobileAndTab?responsiveImgBackground:imgBackground}></div> */}
+            </div>
+            <div
+              className="offcanvas offcanvas-end w-50 "
+              id="offcanvasWithBackdrop"
+              aria-labelledby="offcanvasWithBackdropLabel"
+            >
+              <div className="offcanvas-header">
+                <h5 className="offcanvas-title" id="offcanvasWithBackdropLabel">
+                  Navigation
+                </h5>
+                <button
+                  type="button"
+                  className="btn-close text-reset"
+                  data-bs-dismiss="offcanvas"
+                  aria-label="Close"
+                ></button>
+              </div>
+
+              <div className="flex flex-column gap-3">
+                <LinkTag to="/">Home</LinkTag>
+                {/* <LinkTag to="/aboutus">About Us</LinkTag> */}
+                <LinkTag to="/products">Products</LinkTag>
+                {/* <LinkTag to="/shop">Shop</LinkTag> */}
+                <LinkTag to="/admin">Admin</LinkTag>
+                <LinkTag to="/cart" className="bi bi-cart  position-relative">
+                  {cartList.data.length > 0 && (
+                    <span className="position-absolute top-0 start-100 translate-middle badge fs-6 rounded-pill bg-success">
+                      {cartList.data.length}
+                    </span>
+                  )}
+                </LinkTag>
+                <LinkTag>Login</LinkTag>
+              </div>
             </div>
           </LogoContainer>
           <div style={isMobileAndTab ? responsiveNavStyle : navStyle}>

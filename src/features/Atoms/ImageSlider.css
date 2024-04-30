@@ -18,3 +18,12 @@
    /* color: black;  */
 }
 /* You can add more styles based on your design preferences */
+.control-dots{
+  z-index:-1;
+}
+
+@media (max-width: 768px) {
+  .control-arrow{
+    display: none;
+    }
+ }

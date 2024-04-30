@@ -3,8 +3,10 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./ImageSlider.css"; // Create a CSS file for your styles
 import { FastForward } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import useIsMobile from "../../Components/IsMobile";
 
 const HomeImageSlider = () => {
+  const isMobileAndTab=useIsMobile()
   const images = [
     { url: "/assets/slider1.jpg", alt: "Image 1" },
     { url: "/assets/slider2.jpg", alt: "Image 2" },
@@ -15,17 +17,41 @@ const HomeImageSlider = () => {
 
   return (
     <div className="slider-container position-relative">
-      <Carousel    showThumbs={false} onClickThumb={true}  infiniteLoop={true} autoPlay={FastForward}  animationHandler={"fade"} showArrows={true}>
+      <Carousel
+        showThumbs={false}
+        onClickThumb={true}
+        infiniteLoop={true}
+        autoPlay={FastForward}
+        animationHandler={"fade"}
+        showArrows={true}
+      >
         {images.map((image, index) => (
           <div key={index}>
-            <img src={image.url} height={500} style={{objectFit:"cover"}} alt={image.alt} />
+            <img
+              src={image.url}
+              height={500}
+              style={{ objectFit: "cover" }}
+              alt={image.alt}
+            />
           </div>
         ))}
       </Carousel>
-      <div >
-        <svg className="position-absolute" style={{ bottom: "0px", filter: " contrast(100)" }} version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400.000000 26.000000" preserveAspectRatio="xMidYMid meet">
-          <g transform="translate(0.000000,26.000000) scale(0.100000,-0.100000)" fill="#fff" stroke="none">
-            <path d="M3740 249 c-14 -6 -38 -12 -55 -14 -206 -26 -243 -34 -300 -64 -33
+      <div>
+        <svg
+          className="position-absolute"
+          style={{ bottom: "0px", filter: " contrast(100)" }}
+          version="1.0"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1400.000000 26.000000"
+          preserveAspectRatio="xMidYMid meet"
+        >
+          <g
+            transform="translate(0.000000,26.000000) scale(0.100000,-0.100000)"
+            fill="#fff"
+            stroke="none"
+          >
+            <path
+              d="M3740 249 c-14 -6 -38 -12 -55 -14 -206 -26 -243 -34 -300 -64 -33
 -17 -81 -36 -107 -41 -27 -6 -69 -15 -95 -20 -69 -16 -223 -21 -223 -8 0 7
 -15 8 -42 3 -24 -5 -60 -7 -82 -6 -51 2 -98 -14 -126 -44 -23 -24 -28 -25
 -156 -25 -73 0 -179 7 -234 16 -81 13 -113 14 -164 5 -34 -6 -93 -11 -131 -11
@@ -53,31 +79,40 @@ const HomeImageSlider = () => {
 -96 -20 -28 -26 -57 -45 -71 -45 -13 0 -23 -4 -23 -10 0 -5 -12 -10 -27 -10
 -19 0 -36 -10 -55 -32 l-26 -33 -40 23 c-48 26 -78 28 -149 5 -50 -16 -56 -16
 -106 0 -30 9 -81 17 -115 17 -34 0 -64 5 -68 11 -4 7 -24 9 -52 6 -32 -3 -53
-0 -76 14 -28 16 -142 46 -271 71 -27 5 -77 19 -110 31 -69 24 -159 31 -195 16z"></path>
+0 -76 14 -28 16 -142 46 -271 71 -27 5 -77 19 -110 31 -69 24 -159 31 -195 16z"
+            ></path>
           </g>
         </svg>
       </div>
 
-      <div
-
+      <div 
+      className=" d-md-block"
         style={{
           zIndex: 100,
-         
-          color: "#ffffff",
-        }}>
 
-        <div style={{
-          top: "150px",
-          left: "100px"
-        }} className="position-absolute   ">
-          <div style={{ fontSize: "56px", fontWeight: "bold", }}>
-            Milk Farm
-          </div>
-          <div style={{ fontSize: "20px" }}>
-            Healthy Milk for Good Health
-          </div>
+          color: "#ffffff",
+        }}
+      >
+        <div
+          style={isMobileAndTab?{
+            top: "200px",
+            left: "50px",
+          }:{
+            top: "150px",
+            left: "100px",
+          }}
+          className="position-absolute   "
+        >
+          <div style={isMobileAndTab?{ fontSize: "20px", fontWeight: "bold" }:{ fontSize: "56px", fontWeight: "bold" }}>Milk Farm</div>
+          <div style={{ fontSize: "20px" }}>Healthy Milk for Good Health</div>
         </div>
-        <Link to={"/aboutus"} className="btn  px-4  py-2 rounded-pill position-absolute fs-5" style={{ top: "400px", left: "100px", backgroundColor: "#fece63" }}>Read More</Link>
+        <Link
+          to={"/aboutus"}
+          className={`${isMobileAndTab?'btn  px-2  py-1 rounded-pill position-absolute fs-6':"btn  px-4  py-2 rounded-pill position-absolute fs-5"}`}
+          style={isMobileAndTab?{ bottom: "30px", left: "40%", zIndex:"-1", backgroundColor: "#fece63" }:{ top: "400px", left: "100px", backgroundColor: "#fece63" }}
+        >
+          Read More
+        </Link>
       </div>
     </div>
   );

@@ -1,20 +1,33 @@
-import React from 'react'
-import "./Footer.css"
-import { Link } from 'react-router-dom'
+import React from "react";
+import "./Footer.css";
+import { Link } from "react-router-dom";
+import useIsMobile from "../../Components/IsMobile";
 const Footer = () => {
-const handleClick=()=>{
+  const handleClick = () => {
     window.scrollTo({
-        top:0,
-        behavior:"smooth"
-
-    })
-}
-    return (
-        <div className='position-relative'>
-            <div>
-                <svg className="position-absolute" style={{ top: "-20px", zIndex: "1000" }} version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400.000000 26.000000" preserveAspectRatio="xMidYMid meet">
-                    <g transform="translate(0.000000,26.000000) scale(0.100000,-0.100000)" fill="#212529" stroke="none">
-                        <path d="M3740 249 c-14 -6 -38 -12 -55 -14 -206 -26 -243 -34 -300 -64 -33
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  const isMobAndTab=useIsMobile()
+  return (
+    <div className="position-relative">
+      <div>
+        <svg
+          className="position-absolute"
+          style={isMobAndTab?{ top: "-5px", zIndex: "1000" }:{ top: "-20px", zIndex: "1000" }}
+          version="1.0"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1400.000000 26.000000"
+          preserveAspectRatio="xMidYMid meet"
+        >
+          <g
+            transform="translate(0.000000,26.000000) scale(0.100000,-0.100000)"
+            fill="#212529"
+            stroke="none"
+          >
+            <path
+              d="M3740 249 c-14 -6 -38 -12 -55 -14 -206 -26 -243 -34 -300 -64 -33
 -17 -81 -36 -107 -41 -27 -6 -69 -15 -95 -20 -69 -16 -223 -21 -223 -8 0 7
 -15 8 -42 3 -24 -5 -60 -7 -82 -6 -51 2 -98 -14 -126 -44 -23 -24 -28 -25
 -156 -25 -73 0 -179 7 -234 16 -81 13 -113 14 -164 5 -34 -6 -93 -11 -131 -11
@@ -42,69 +55,80 @@ const handleClick=()=>{
 -96 -20 -28 -26 -57 -45 -71 -45 -13 0 -23 -4 -23 -10 0 -5 -12 -10 -27 -10
 -19 0 -36 -10 -55 -32 l-26 -33 -40 23 c-48 26 -78 28 -149 5 -50 -16 -56 -16
 -106 0 -30 9 -81 17 -115 17 -34 0 -64 5 -68 11 -4 7 -24 9 -52 6 -32 -3 -53
-0 -76 14 -28 16 -142 46 -271 71 -27 5 -77 19 -110 31 -69 24 -159 31 -195 16z"></path>
-                    </g>
-                </svg>
+0 -76 14 -28 16 -142 46 -271 71 -27 5 -77 19 -110 31 -69 24 -159 31 -195 16z"
+            ></path>
+          </g>
+        </svg>
+      </div>
+      <div className=" py-3 mw-1100px footer_css bg-dark text-light">
+        <div className="row md-row-cols-2 px-4  ">
+          <div className="col serviceStyle">
+            <h4>{`About Us`.toUpperCase()}</h4>
+            <p >
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem
+              ipsum modi officia, dolorem molestiae quia! Incidunt{" "}
+            </p>
+          </div>
+          <div className="col w-50">
+            <h4> {`Our Services`.toUpperCase()}</h4>
+            <div>
+              <ul className="list-unstyled serviceStyle">
+                <li>
+                  <Link to="/">Dairy Product</Link>
+                </li>
+                <li>
+                  <Link to="/">Bakery Product</Link>
+                </li>
+                <li>
+                  <Link to="/">Food Product</Link>
+                </li>
+              </ul>
             </div>
-            <div className=' py-3 mw-1100px footer_css bg-dark text-light'>
-
-                <div className=' d-flex px-4 justify-content-around '>
-                    <div className='w-25 serviceStyle'>
-                        <h4>{`About Us`.toUpperCase()}</h4>
-                        <p style={{ width: "250px" }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem ipsum modi officia, dolorem molestiae quia! Incidunt </p>
-                    </div>
-                    <div className='w-25'>
-                        <h4> {`Our Services`.toUpperCase()}</h4>
-                        <div>
-                            <ul className='list-unstyled serviceStyle' >
-                                <li><Link to="/">Dairy Product</Link></li>
-                                <li><Link to="/">Bakery Product</Link></li>
-                                <li><Link to="/">Food Product</Link></li>
-
-                            </ul>
-                        </div>
-                    </div>
-                    <div className='w-25'>
-                        <h4> {`Quick Links`.toUpperCase()}</h4>
-                        <div>
-                            <ul className='list-unstyled serviceStyle'>
-                                <li><Link onClick={handleClick} to="/">Home</Link></li>
-                                <li><Link onClick={handleClick} to="/aboutus">AboutUs</Link></li>
-                                <li><Link onClick={handleClick} to="/products">Products</Link></li>
-                                <li><Link onClick={handleClick} to="/products">Contact Us</Link></li>
-
-                            </ul>
-                        </div>
-                    </div>
-                    <div className='w-25'>
-
-                        <h4>{`Contact Info`.toUpperCase()}</h4>
-                        <div className='serviceStyle'>
-                            <p>
-                                Street 238,52 tempor
-                                Donec ultricies mattis nulla
-                                risus tristique ut.
-                            </p>
-                            <p>
-                                Phone: +01 23 456 7890
-                            </p>
-                            <p>
-                                E-mail:support@apnidairy.com
-                            </p>
-                            <p>
-                                Website:https://apnidairy.com
-                            </p>
-
-                        </div>
-                    </div>
-
-                </div>
-                <div className='text-center'>Crafted By Arvind With 	&#129505;</div>
+          </div>
+          <div className="col">
+            <h4> {`Quick Links`.toUpperCase()}</h4>
+            <div>
+              <ul className="list-unstyled serviceStyle">
+                <li>
+                  <Link onClick={handleClick} to="/">
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link onClick={handleClick} to="/aboutus">
+                    AboutUs
+                  </Link>
+                </li>
+                <li>
+                  <Link onClick={handleClick} to="/products">
+                    Products
+                  </Link>
+                </li>
+                <li>
+                  <Link onClick={handleClick} to="/products">
+                    Contact Us
+                  </Link>
+                </li>
+              </ul>
             </div>
+          </div>
+          <div className="col">
+            <h4>{`Contact Info`.toUpperCase()}</h4>
+            <div className="serviceStyle">
+              <p>
+                Street 238,52 tempor Donec ultricies mattis nulla risus
+                tristique ut.
+              </p>
+              <p>Phone: +01 23 456 7890</p>
+              <p>E-mail:support@apnidairy.com</p>
+              <p>Website:https://apnidairy.com</p>
+            </div>
+          </div>
         </div>
+        <div className="text-center">Crafted By Arvind With &#129505;</div>
+      </div>
+    </div>
+  );
+};
 
-
-    )
-}
-
-export default Footer
+export default Footer;

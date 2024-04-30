@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import useIsMobile from "../../Components/IsMobile";
 
 const AboutProduct = () => {
   const [products, setProducts] = useState([]);
-
+const isMobileAndtab=useIsMobile()
   useEffect(() => {
     fetch("/assets/aboutproduct.json")
       .then((response) => response.json())
@@ -15,7 +16,8 @@ const AboutProduct = () => {
   return (
     <div
       style={{
-        height: "90vh",
+        // height: "90vh",
+        paddingBottom:"50px",
         backgroundImage:
           "url(https://sktperfectdemo.com/themepack/dairy/wp-content/uploads/2020/06/sec2-bg.png) ",
       }}
@@ -26,16 +28,16 @@ const AboutProduct = () => {
           <h1 className="fw-bold">Produce</h1>
         </div>
       </div>
-      <div className=" text-center  ">
-        <div className="d-flex flex-wrap justify-content-center gap-4">
+      <div className=" text-center flex justify-content-center  ">
+        <div className=" row  gap-2">
           {products.map((product, index) => (
             <div
               className="bg-white rounded mb-3"
               key={index}
-              style={{ maxWidth: "300px" }}
+              style={isMobileAndtab?{ width: "100px" }:{ width: "250px" }}
             >
               <div>
-                <img className="p-1" src={product.pImage} alt="" />
+                <img className="p-1" src={product.pImage} style={isMobileAndtab?{width:"40px",height:"40px"}:{}} alt="" />
               </div>
               <h3 style={{ fontWeight: "bold", textAlign: "center" }}>
                 {product.pName}
