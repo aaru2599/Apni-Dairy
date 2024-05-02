@@ -61,13 +61,12 @@ const AddProductPage = () => {
         setIsShowPreviewModal(isValid);
         console.log("isValid", isValid);
 
-        if (isValid) {
-        } else {
+        if (!isValid) {
             toast.error("Please fill in all required fields.", {
                 autoClose: 3000,
             });
+       
         }
-
     };
 
 
@@ -126,24 +125,18 @@ const AddProductPage = () => {
         }
     }, [])
     console.log("submittedData", submittedData);
-    // const onSetImage = (event) => {
-    //     const file = event.target.files[0]
-    //     if (file) {
-    //         const fileURL = URL.createObjectURL(file);
-    //         setProductImage(fileURL)
-    //         console.log("productImage", productImage);
-    //     }
-    // }
+   
+    
 
     console.log("productAvailable", productAvailable);
     const formMain = {
         backgroundImage: "url(https://image.freepik.com/free-photo/dairy-products-black-wooden-background-top-view_88281-3088.jpg)",
-        width: "100%",
-        height: "100vh",
-        // overflow: "hidden",
+    
+        
+    
         backgroundRepeat: "no-repeat",
         backgroundSize: "100%",
-        position: "relative"
+        // position: "relative"
     }
     return (
 

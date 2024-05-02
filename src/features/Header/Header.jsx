@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import "../../Redux/Product/Cart/Cart.css";
 import useIsMobile from "../../Components/IsMobile";
 import styled from "styled-components";
+import HeaderOffCanvas from "./HeaderOffCanvas";
 
 const navStyle = {
   display: "block",
@@ -44,20 +45,48 @@ const Header = () => {
       >
         <MainHeader>
           <LogoContainer>
+            <div
+              className="btn position-absolute d-block d-md-none  "
+              style={{
+                top: "0px",
+                left: "20px",
+                position: "absolute",
+                zIndex: "10",
+              }}
+            >
+              <div style={{position:"relative"}}>
+                <img
+                  src="/assets/cloud.png"
+                  width={50}
+                  style={{ filter: "drop-shadow(0 0 0.75rem gray)" }}
+                  height={50}
+                  alt=""
+                />
+                <div style={{position:"absolute", top:"5px ",left:"5px" }}>
+                  <HeaderOffCanvas />
+                </div>
+              </div>
+            </div>
             <button
               className="btn position-absolute d-block d-md-none  "
               style={{
-                top: "10px",
+                top: "5px",
                 right: "20px",
                 position: "absolute",
                 zIndex: "10",
               }}
-              type="button"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#offcanvasWithBackdrop"
-              aria-controls="offcanvasWithBackdrop"
             >
-              <i className="bi bi-chevron-double-left"></i>
+              <LinkTag
+                to="/cart"
+                className="bi bi-cart-check  position-relative"
+                style={{ marginRight: "0px" }}
+              >
+                {cartList.data.length > 0 && (
+                  <span className="position-absolute top-0 start-100 translate-middle badge fs-6 rounded-pill bg-success">
+                    {cartList.data.length}
+                  </span>
+                )}
+              </LinkTag>
             </button>
 
             <Link to="/">
@@ -99,43 +128,6 @@ const Header = () => {
                 ></path>
               </g>
             </svg>
-
-            <div>
-              {/* <div style={isMobileAndTab?responsiveImgBackground:imgBackground}></div> */}
-            </div>
-            <div
-              className="offcanvas offcanvas-end w-50 "
-              id="offcanvasWithBackdrop"
-              aria-labelledby="offcanvasWithBackdropLabel"
-            >
-              <div className="offcanvas-header">
-                <h5 className="offcanvas-title" id="offcanvasWithBackdropLabel">
-                  Navigation
-                </h5>
-                <button
-                  type="button"
-                  className="btn-close text-reset"
-                  data-bs-dismiss="offcanvas"
-                  aria-label="Close"
-                ></button>
-              </div>
-
-              <div className="flex flex-column gap-3">
-                <LinkTag to="/">Home</LinkTag>
-                {/* <LinkTag to="/aboutus">About Us</LinkTag> */}
-                <LinkTag to="/products">Products</LinkTag>
-                {/* <LinkTag to="/shop">Shop</LinkTag> */}
-                <LinkTag to="/admin">Admin</LinkTag>
-                <LinkTag to="/cart" className="bi bi-cart  position-relative">
-                  {cartList.data.length > 0 && (
-                    <span className="position-absolute top-0 start-100 translate-middle badge fs-6 rounded-pill bg-success">
-                      {cartList.data.length}
-                    </span>
-                  )}
-                </LinkTag>
-                <LinkTag>Login</LinkTag>
-              </div>
-            </div>
           </LogoContainer>
           <div style={isMobileAndTab ? responsiveNavStyle : navStyle}>
             <LinkTag to="/">Home</LinkTag>

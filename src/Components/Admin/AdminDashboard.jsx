@@ -221,7 +221,7 @@ const AdminDashboard = () => {
                       <button
                         className="btn bi bi-trash3"
                         value={index}
-                        onChange={onRemoveItem}
+                        onClick={onRemoveItem}
                       ></button>
                     </td>
                   </tr>

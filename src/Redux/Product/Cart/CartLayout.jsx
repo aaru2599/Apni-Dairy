@@ -52,7 +52,7 @@ const CartLayout = () => {
   };
 
   return (
-    <div className="main-div">
+    <div className="main-div"  style={{backgroundColor:"#e9e9e9"}}>
       <Header />
 
       <div className="d-flex justify-content-center">
@@ -65,7 +65,7 @@ const CartLayout = () => {
           <div className="bg-white rounded p-2">
             <table
               className="p-1  table table-hover  "
-              style={{ width: "35rem" }}
+              style={{ width: "35rem",maxHeight:"100px" }}
             >
               <tbody>
                 {cartData.map((product) => {
